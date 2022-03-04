@@ -24,30 +24,9 @@ include_once('blocs/functions.php');
             include_once('users/login.php');
 
             if (isset($_SESSION['userLogged'])) {
-                foreach ($recipesActiv as $recipes) {
-                    $dspRecipe = displayRecipe($recipes);
-                    $dspEndRecipeAuthor = displayAuthor($recipes['author'], $usersAll);
+                
+                dspAllRescipes($recipesActiv, $usersAll);
             ?>
-                    <article class="cadre">
-                        <?php echo $dspRecipe . $dspEndRecipeAuthor;
-                        if ($recipes['author'] === $_SESSION['userMail']) {
-                        ?>
-                            <form>
-                                <a href="recipes/update.php?id=<?php echo $recipes['recipe_id']; ?>">
-                                    <input type="button" value="Modifier">
-                                </a>
-                                <a href="recipes/deleteRecipe.php?id=<?php echo $recipes['recipe_id']; ?>">
-                                    <input type="button" value="Effacer">
-                                </a>
-                            </form>
-                        <?php
-                        }
-                        ?>
-                    </article>
-                    </br>
-                <?php
-                }
-                ?>
         </div>
     <?php
             }

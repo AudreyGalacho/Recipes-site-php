@@ -5,7 +5,7 @@ function recipeByIdVerrif($id)
   include('blocs/bddCo.php');
 
   if (!ctype_digit($id)) { //Verif que la valeur récupérer par le get est un nombre
-    echo 'Id non valide'; // COUILLE DANS PATE SI $id = int 3 => id non valide
+    echo 'Id non valide'; 
     include('blocs/footer.php');
     exit();
   }
