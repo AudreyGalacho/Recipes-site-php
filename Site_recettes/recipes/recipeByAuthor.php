@@ -1,4 +1,5 @@
 <?php
+
 $author = 'lupi@exemple.com';
 // On récupère tout le contenu de la table recipes actives
 $sqlQuery = 'SELECT * FROM recipes WHERE author = :author ORDER BY title';
