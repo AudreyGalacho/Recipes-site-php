@@ -18,6 +18,8 @@ try {
     echo 'Exception : ', $e->getMessage();
 }
 ?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -30,10 +32,10 @@ try {
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-    </br>
     <?php
     include_once('../blocs/header.php');
     ?>
+    </br>
     <div class="container">
         <h1>Vos recettes !</h1>
         <div class="card-body">

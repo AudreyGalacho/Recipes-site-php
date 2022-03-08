@@ -16,22 +16,24 @@ include_once('blocs/functions.php');
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-    <?php include_once('blocs/header.php'); ?>
-    <div class="container">
-        <h1>Site de Recettes !</h1>
-        <div class="card-body">
-            <?php
-            include_once('users/login.php');
-            if (isset($_SESSION['userLogged'])) {
-                
-                dspAllRescipes($recipesActiv, $usersAll);
-            ?>
-        </div>
-    <?php
-            }
-    ?>
-    </div>
-    <?php include_once('blocs/footer.php'); ?>
-</body>
+        <?php include_once('blocs/header.php'); ?>
+    </br>
+    <section>
+        <div class="container">
+            <h1>Site de Recettes !</h1>
+            <div class="card-body">
+                <?php
+                include_once('users/login.php');
 
+                if (isset($_SESSION['userLogged'])) {
+                    dspAllRescipes($recipesActiv, $usersAll);
+                ?>
+            </div>
+        <?php
+                }
+        ?>
+        </div>
+        <?php include_once('blocs/footer.php'); ?>
+    </section>
+</body>
 </html>
