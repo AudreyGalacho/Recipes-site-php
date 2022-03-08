@@ -9,7 +9,6 @@ function display_recipe(array $recipe): string // Fonction d'affichage des recet
     $recipe_content .= '<div>' . $recipe['recipe'] . '</div>';
     $recipe_content .= '<i>' . $recipe['author'] . '</i>';
     $recipe_content .= '</article>';
-
     return $recipe_content;
 }
 
@@ -54,7 +53,6 @@ function backButton($page) //Le bouton pour retourner à la page acceuil qui pou
 
 function displayRecipe(array $recipe): string // Fonction d'affichage des recettes EN DEUX MORCEAU
 {
-
     $recipe_content = '';
     $recipe_content .= '<h3>' . $recipe['title'] . '</h3>';
     $recipe_content .= '<div>' . $recipe['recipe'] . '</div>';
@@ -73,7 +71,6 @@ function displayAuthor(string $authorEmail, array $users): string //fait suite a
         }
     }
 }
-
 
 function dspAllRescipes(array $recipes , $users){
     include('../users/usersAll.php');

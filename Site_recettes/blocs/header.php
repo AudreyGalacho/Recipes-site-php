@@ -17,6 +17,9 @@
       <li class="nav-item">
         <a class="nav-link" href="/Site_recettes/recipes/addRecipe.php">Ajout recette</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/Site_recettes/recipes/recipeUserLogged.php">Mes recettes</a>
+      </li>
     </ul>
   </div>
 </nav>
