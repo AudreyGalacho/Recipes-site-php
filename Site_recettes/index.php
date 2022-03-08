@@ -22,7 +22,6 @@ include_once('blocs/functions.php');
         <div class="card-body">
             <?php
             include_once('users/login.php');
-
             if (isset($_SESSION['userLogged'])) {
                 
                 dspAllRescipes($recipesActiv, $usersAll);
