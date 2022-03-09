@@ -1,45 +1,5 @@
 <?php
 
-function display_recipe(array $recipe): string // Fonction d'affichage des recettes
-{
-
-    $recipe_content = '';
-    $recipe_content = '<article>';
-    $recipe_content .= '<h3>' . $recipe['title'] . '</h3>';
-    $recipe_content .= '<div>' . $recipe['recipe'] . '</div>';
-    $recipe_content .= '<i>' . $recipe['author'] . '</i>';
-    $recipe_content .= '</article>';
-    return $recipe_content;
-}
-
-function display_author(string $authorEmail, array $usersAll): string //ESSAYER DE METTRE CETTE FONCTION DANS CELLE DU DESSUS
-{
-    for ($i = 0; $i < count($usersAll); $i++) {
-        $author = $usersAll[$i];
-        if ($authorEmail === $author['email']) {
-            return $author['full_name'] . '(' . $author['age'] . ' ans)';
-        }
-    }
-}
-
-function get_recipes(array $recipes, int $limit): array //NON UTILISE
-{
-    $valid_recipes = [];
-    $counter = 0;
-
-    foreach ($recipes as $recipe) {
-        if ($counter == $limit) {
-            return $valid_recipes;
-        }
-
-        if ($recipe['is_enabled']) {
-            $valid_recipes[] = $recipe;
-            $counter++;
-        }
-    }
-    return $valid_recipes;
-}
-
 function backButton($page) //Le bouton pour retourner à la page acceuil qui pourra servir de bouton juste retour un jour
 {
 ?>
@@ -54,8 +14,8 @@ function backButton($page) //Le bouton pour retourner à la page acceuil qui pou
 function displayRecipe(array $recipe): string // Fonction d'affichage des recettes EN DEUX MORCEAU
 {
     $recipe_content = '';
-    $recipe_content .= '<h3>' . $recipe['title'] . '</h3>';
-    $recipe_content .= '<div>' . $recipe['recipe'] . '</div>';
+    $recipe_content .= '<h3 class= "card-title">' . $recipe['title'] . '</h3>';
+    $recipe_content .= '<p class="card-text">' . $recipe['recipe'] . '</p>';
     return $recipe_content;
 }
 
@@ -66,8 +26,8 @@ function displayAuthor(string $authorEmail, array $users): string //fait suite a
         $author = $users[$i];
         if ($authorEmail === $author['email']) {
             $authorCool = $author['full_name'] . ' (' . $author['age'] . ' ans)';
-            $recipeEnd = '<i>' . $authorCool . '</i>';
-            return $recipeEnd;
+            $recipeAuthor = '<i>' . $authorCool . '</i>';
+            return $recipeAuthor;
         }
     }
 }
@@ -80,7 +40,7 @@ function dspAllRescipes(array $recipes , $users){
         $dspEndRecipeAuthor = displayAuthor($recipe['author'], $users);
 ?>
         <article class="cadre">
-            <?php echo $dspRecipe . $dspEndRecipeAuthor;
+            <p class="card-text"> <?php echo $dspRecipe . $dspEndRecipeAuthor;
             if ($recipe['author'] === $_SESSION['userMail']) {
             ?>
                 <form>
@@ -94,6 +54,7 @@ function dspAllRescipes(array $recipes , $users){
             <?php
             }
             ?>
+            </p>
         </article>
         </br>
     <?php
