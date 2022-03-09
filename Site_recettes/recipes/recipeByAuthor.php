@@ -54,6 +54,7 @@ try {
                                 <input type="button" value="Effacer">
                             </a>
                         </form>
+                    </br>
             <?php
                     }
                 }
