@@ -34,7 +34,6 @@ try {
     <?php
     include_once('../blocs/header.php');
     ?>
-    </br>
     <div class="container">
         <h1>Vos recettes !</h1>
         <div class="card-body">
@@ -46,10 +45,10 @@ try {
                     echo displayRecipe($recipe); // Fonction d'affichage des recettes
             ?>
                     <form>
-                        <a href="recipes/update.php?id=<?php echo $recipe['recipe_id']; ?>">
+                        <a href="update.php?id=<?php echo $recipe['recipe_id']; ?>">
                             <input type="button" value="Modifier">
                         </a>
-                        <a href="recipes/deleteRecipe.php?id=<?php echo $recipe['recipe_id']; ?>">
+                        <a href="deleteRecipe.php?id=<?php echo $recipe['recipe_id']; ?>">
                             <input type="button" value="Effacer">
                         </a>
                     </form>

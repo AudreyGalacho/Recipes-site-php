@@ -62,15 +62,13 @@ try {
 <body class="d-flex flex-column min-vh-100">
     <?php include_once('../blocs/header.php'); ?>
     <div class="container">
-        <h1>Recette bien reçue! </h1>
+        <h2>Recette bien reçue! </h1>
         <div class="card">
-
             <div class="card-body">
-                <h5 class="card-title">Rappel de la recette</h5>
+                <h3 class="card-title">Rappel de la recette</h3>
+                <h6 class="card-text"><b>Titre</b> : <?php echo ($title); ?></h6>
+                <p class="card-text"><b>Recette</b>:</br> <?php echo ($recipe); ?></p>
                 <p class="card-text"><b>Auteur</b> : <?php echo ($_SESSION['userLogged']); ?></p>
-                <p class="card-text"><b>Titre</b> : <?php echo ($title); ?></p>
-                <pre class="card-text"><b>Recette</b>:</br> <?php echo ($recipe); ?></pre>
-
             </div>
         </div>
 </br>

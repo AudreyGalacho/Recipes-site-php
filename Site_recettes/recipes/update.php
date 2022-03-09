@@ -2,7 +2,6 @@
 $getData = $_GET;
 //Recupération de bdd et header
 include_once('../blocs/bddCo.php');
-include_once('../blocs/header.php');
 include_once('recipesAll.php');
 include_once('../users/usersAll.php');
 include_once('../functSql.php');
@@ -39,9 +38,8 @@ $id = $recipe['recipe_id'];
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-
+<?php include_once('../blocs/header.php'); ?>
     <div class="container">
-        <h1>Site de Recettes !</h1>
         <h3>Modification de "<?php echo $titleID; ?>":</h3>
         <form action="updatePost.php" method="POST">
             <fieldset>

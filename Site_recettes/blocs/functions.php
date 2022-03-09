@@ -8,7 +8,7 @@ function backButton($page) //Le bouton pour retourner à la page acceuil qui pou
             <input type="button" value="Retour" name="Retour">
         </a>
     </form>
-<?php
+    <?php
 }
 
 function displayRecipe(array $recipe): string // Fonction d'affichage des recettes EN DEUX MORCEAU
@@ -32,16 +32,15 @@ function displayAuthor(string $authorEmail, array $users): string //Affichage de
 
 function dspAllRescipes(array $recipes, $users)
 {
-    include('../users/usersAll.php');
-
     foreach ($recipes as $recipe) {
         $dspRecipe = displayRecipe($recipe);
         $dspEndRecipeAuthor = displayAuthor($recipe['author'], $users);
     ?>
         <article class="cadre">
-            <p class="card-text"> <?php echo $dspRecipe . $dspEndRecipeAuthor;
-                                    if ($recipe['author'] === $_SESSION['userMail']) {
-                                    ?>
+            <p class="card-text">
+                <?php echo $dspRecipe . $dspEndRecipeAuthor;
+                if ($recipe['author'] === $_SESSION['userMail']) {
+                ?>
             <form>
                 <a href="recipes/update.php?id=<?php echo $recipe['recipe_id']; ?>">
                     <input type="button" value="Modifier">
@@ -51,11 +50,10 @@ function dspAllRescipes(array $recipes, $users)
                 </a>
             </form>
         <?php
-                                    }
+                }
         ?>
         </p>
         </article>
-        </br>
 <?php
     }
 }

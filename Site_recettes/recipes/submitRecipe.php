@@ -18,12 +18,9 @@ if (empty($_POST['recipe']) || empty($_POST['title'])) {
 foreach ($recipes as $recipe) {
     if ($_POST['title'] === $recipe['title']) {
         echo 'Une recette à déjà le même titre';
-        echo 'mettre un retour sur la page form';
     }
     if ($_POST['recipe'] === $recipe['recipe']) {
-        echo 'Une recette à déjà le même descriptif';
-        header('Location: form/recipes_form.php');
-        exit();
+        echo 'Une recette à déjà le même descriptif';//COMPLETER
     }
 }
 
@@ -45,7 +42,6 @@ $insertRecipe->execute([
 ?>
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -59,16 +55,13 @@ $insertRecipe->execute([
     <div class="container">
         <h1>Recette bien reçue! </h1>
         <div class="card">
-
             <div class="card-body">
-                <h5 class="card-title">Rappel de votre recette:</h5>
-                <p class="card-text"><b>Auteur</b> : <?php echo $_SESSION['userLogged']; ?></p>
-                <p class="card-text"><b>Titre</b> : <?php echo $titleID; ?></p>
-                <pre class="card-text"><b>Recette</b> : <?php echo $recipeID; ?></pre>
+                <h3 class="card-title">Rappel de la recette</h3>
+                <h6 class="card-text"><b>Titre</b> : <?php echo ($titleID); ?></h6>
+                <p class="card-text"><b>Recette</b>:</br> <?php echo ($recipeID); ?></p>
+                <p class="card-text"><b>Auteur</b> : <?php echo ($_SESSION['userLogged']); ?></p>
             </div>
-
         </div>
-
         </br>
         <?php
         backButton('index.php');

@@ -17,7 +17,6 @@ include_once('blocs/functions.php');
 
 <body class="d-flex flex-column min-vh-100">
         <?php include_once('blocs/header.php'); ?>
-    </br>
     <section>
         <div class="container">
             <h1>Site de Recettes !</h1>
