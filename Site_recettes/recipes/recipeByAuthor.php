@@ -37,7 +37,7 @@ try {
     include_once('../blocs/header.php');
     ?>
     <div class="container">
-        <h1>Les recettes de !</h1>
+        <h1>Les recettes!</h1>
         <div class="card-body">
             <?php
             include_once('../users/login.php');
