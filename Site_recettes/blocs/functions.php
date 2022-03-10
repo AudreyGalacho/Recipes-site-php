@@ -14,7 +14,7 @@ function backButton($page) //Le bouton pour retourner à la page acceuil qui pou
 function displayRecipe(array $recipe): string // Fonction d'affichage des recettes EN DEUX MORCEAU
 {
     $recipe_content = '<h3 class= "card-title">' . $recipe['title'] . '</h3>';
-    $recipe_content .= '<p class="card-text text-justify">' . $recipe['recipe'] . '</p>';
+    $recipe_content .= '<p class="card-text text-justify">' . nl2br($recipe['recipe']) . '</p>';
     return $recipe_content;
 }
 

@@ -66,9 +66,9 @@ try {
         <div class="card">
             <div class="card-body">
                 <h3 class="card-title">Rappel de la recette</h3>
-                <h6 class="card-text"><b>Titre</b> : <?php echo ($title); ?></h6>
-                <p class="card-text"><b>Recette</b>:</br> <?php echo ($recipe); ?></p>
-                <p class="card-text"><b>Auteur</b> : <?php echo ($_SESSION['userLogged']); ?></p>
+                <h6 class="card-text"><b>Titre</b> : <?php echo $title; ?></h6>
+                <p class="card-text"><b>Recette</b>:</br> <?php echo $recipe; ?></p>
+                <p class="card-text"><b>Auteur</b> : <?php echo $_SESSION['userLogged']; ?></p>
             </div>
         </div>
 </br>
