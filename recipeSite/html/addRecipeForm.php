@@ -1,0 +1,28 @@
+<div class="container">
+    <h1>Ajout de recette</h1>
+    <form action="submitRecipe.php" method="POST">
+        <fieldset>
+            <legend>Auteur</legend>
+            <?php echo $_SESSION['userMail']; ?>
+
+        </fieldset>
+        </br>
+        <fieldset>
+            <legend>La recette</legend>
+
+            <label for="title" class="form-label">Titre</label>
+            <input type="text" class="form-control" id="title" name="title" required="required">
+            <div class="invalid-feedback">
+                Il faut un titre a cette recette.
+            </div>
+
+            <label for="recipe" class="form-label">Recette</label>
+            <textarea class="form-control" rows="5" placeholder="Détails de votre recette" id="recipe" name="recipe" required="required"></textarea>
+            <div class="invalid-feedback">
+                Il faut une description a cette recette.
+            </div>
+        </fieldset>
+        </br>
+        <button type="submit" class="btn btn-primary">Envoyer</button>
+    </form>
+</div>
