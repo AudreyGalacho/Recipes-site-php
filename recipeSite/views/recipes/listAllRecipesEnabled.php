@@ -6,6 +6,7 @@
  */
 function displayAllRescipes(array $recipes, $users)
 {
+    include('displayRecipe.php');
     foreach ($recipes as $recipe) {
         $dspRecipe = displayRecipe($recipe);
         $dspEndRecipeAuthor = displayAuthor($recipe['author'], $users);

@@ -3,7 +3,7 @@
 include_once('config.php');
     try { // On se connecte à MySQL
         $mysqlClient = new PDO(
-            "mysql:host=".DB_HOST.";dbname=".DB_NAME.";charset=".DB_CHARSET, 
+            "mysql:host=".DB_HOST.";dbname=".DB_NAME.";port=".DB_PORT.";charset=".DB_CHARSET, 
             USER_NAME,
             USER_PASSWORD,
             [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION],

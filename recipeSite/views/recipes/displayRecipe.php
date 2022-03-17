@@ -10,6 +10,4 @@ function displayRecipe(array $recipe): string // Fonction d'affichage des recett
     return $recipe_content;
 }
 
-
-
 ?>

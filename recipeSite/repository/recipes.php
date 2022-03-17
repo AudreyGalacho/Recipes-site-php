@@ -4,7 +4,6 @@
  * @param string 
  * @return array|false
  */
-
 function getRecipeById($idRecipe)
 { // Request recipe By ID  ----------------------------------------------------------------------
     global $mysqlClient;
@@ -47,7 +46,8 @@ function getRecipesByAuthor($author)
     }
 }
 
-/** Update a recipe from is id 
+
+/** Update a recipe from his id 
  * @param string $title $detail $id
  * @return string|false
  */
