@@ -10,7 +10,7 @@ function displayAuthor(string $authorEmail, array $users): string //Affichage de
         $author = $users[$i];
         if ($authorEmail === $author['email']) {
             $authorRecipe = $author['full_name'] . ' (' . $author['age'] . ' ans)';
-            $recipeAuthor = '<i><a href="/Site_recettes/recipes/recipeByAuthor.php?id=' . $author['email'] . '">' . $authorRecipe . '</a></i>';
+            $recipeAuthor = '<i><a href="/recipeSite/recipes/recipeByAuthor.php?id=' . $author['email'] . '">' . $authorRecipe . '</a></i>';
             return $recipeAuthor;
         }
     }
