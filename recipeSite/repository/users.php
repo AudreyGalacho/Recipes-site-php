@@ -19,6 +19,8 @@ function isUserLogged($postData, $usersAll)
 
                 $_SESSION['userLogged'] = $usersAll[$i]['full_name'];
                 $_SESSION['userMail'] = $usersAll[$i]['email'];
+                $_SESSION['errMessage'] = '';
+                $_SESSION['pageNav'] = 0;
             }
             ++$i;
         }
@@ -30,7 +32,9 @@ function isUserLogged($postData, $usersAll)
         <p>
             Bonjour <?php echo $_SESSION['userLogged'] ?> bienvenu!!!
         </p>
-<?php
+        <!-- Ajout d'un renvoi index? -->
+        <?php echo $_SESSION['pageNav'];
+        include_once('../views/router.php');
     }
 }
 

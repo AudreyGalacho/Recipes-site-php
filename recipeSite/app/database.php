@@ -1,5 +1,4 @@
 <?php
-
 include_once('config.php');
     try { // On se connecte à MySQL
         $mysqlClient = new PDO(
@@ -8,6 +7,7 @@ include_once('config.php');
             USER_PASSWORD,
             [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION],
         );
+        echo 'Connexion à la bdd  .';
     }
     catch(Exception $e) {    // En cas d'erreur, on affiche un message et on arrête tout
         echo ' ERREUR /!\ ';

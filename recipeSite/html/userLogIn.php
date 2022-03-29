@@ -1,5 +1,5 @@
 <p> Vous devez être enregistré pour accéder aux recettes. </p>
-<form method="POST" action="/recipeSite/index.php">
+<form method="POST" action="">
     <label for="email">Email</label>
     <input type="email" placeholder="your@email.com" name="email" required="required">
 

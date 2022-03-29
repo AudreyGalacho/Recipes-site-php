@@ -1,5 +1,26 @@
 <?php
 
+/** Get all recipes from table 
+ * @param 
+ * @return array|false
+ */
+// On récupère tout le contenu de la table recipes ordonée
+function getAllRecipesOrdered(){
+    global $mysqlClient;
+    $sqlQuery = 'SELECT * FROM recipes ORDER BY title';
+        try {
+            $recipesStatement = $mysqlClient->prepare($sqlQuery);
+            $recipesStatement->execute();
+            $recipesActiv = $recipesStatement->fetchAll();
+            echo 'Recuperation des recettes';
+            return $recipesActiv;
+            
+        } catch (Exception $e) {
+            echo 'Exception : ', $e->getMessage();
+    }
+}
+
+
 /** Get one recipe from is id
  * @param string 
  * @return array|false

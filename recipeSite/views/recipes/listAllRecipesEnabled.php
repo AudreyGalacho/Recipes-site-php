@@ -4,12 +4,14 @@
  * @param array|array
  * @return string
  */
-function displayAllRescipes(array $recipes, $users)
+function displayAllRescipes(array $recipesActiv, $usersAll)
 {
     include('displayRecipe.php');
-    foreach ($recipes as $recipe) {
+    include('/Users/buutt//Documents/WEB-DEV/first-repository/recipeSite/views/users/displayAuthor.php');
+
+    foreach ($recipesActiv as $recipe) {
         $dspRecipe = displayRecipe($recipe);
-        $dspEndRecipeAuthor = displayAuthor($recipe['author'], $users);
+        $dspEndRecipeAuthor = displayAuthor($recipe['author'], $usersAll);
 ?>
         <article class="cadre">
             <p class="card-text">

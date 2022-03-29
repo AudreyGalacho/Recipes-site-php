@@ -10,16 +10,16 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href= "/recipeSite/index.php"> Home</a>
+        <a class="nav-link" href= "/recipeSite/views/index.php"> Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/recipeSite/contact/contactForm.php">Contact</a>
+        <a class="nav-link" href="/recipeSite/html/messageContactForm.php">Contact</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/recipeSite/recipes/addRecipe.php">Ajout recette</a>
+        <a class="nav-link" href="/recipeSite/html/addRecipeForm.php">Ajout recette</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/recipeSite/recipes/recipeUserLogged.php">Mes recettes</a>
+        <a class="nav-link" href="/recipeSite/view/index.php">Mes recettes</a>
       </li>
     </ul>
   </div>
