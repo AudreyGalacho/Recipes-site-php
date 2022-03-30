@@ -3,6 +3,7 @@ session_start();
 include_once('../app/database.php');
 include_once('../repository/recipes.php');
 include_once('../repository/users.php');
+include_once('router.php');
 
 ?>
 
@@ -15,11 +16,10 @@ include_once('../repository/users.php');
     <section>
         <div class="container-fluid px-5">
            
-                <?php
-                $usersAll = getAllUsers();
-                isUserLogged($_POST, $usersAll);?>
+            <?php    
+               router('');
+            ?>
 
-            
         </div>
     </section>
     <?php include_once('../html/footer.php'); ?>
