@@ -5,8 +5,9 @@
  * @return string|false
  */
 
-function isUserLogged($postData, $usersAll)
+function isUserLogged()
 {
+    global $usersAll;
     $postData = $_POST;
 
     if (isset($postData['email'])) {
@@ -25,19 +26,14 @@ function isUserLogged($postData, $usersAll)
         }
     }
     if (!isset($_SESSION['userLogged'])) {
-        include_once('../html/userLogIn.php');
+        include_once('html/userLogIn.php');
     } else {
 ?>
         <p>
             Bonjour <?php echo $_SESSION['userLogged'] ?> bienvenu!!!
         </p>
         <!-- Ajout d'un renvoi index? -->
-        <?php
-        $_SESSION['pageNav'] = 0;
-        echo $_SESSION['pageNav'];
-        echo ' ou sommes nous... ';
-        router($_SESSION['pageNav']);
-
+        <?php       
     }
 }
 

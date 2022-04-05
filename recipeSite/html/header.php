@@ -10,16 +10,16 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="">Home</a>
+        <a class="nav-link" href="http://localhost/recipeSite/?destination=recettes?action=list">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href=""><?php echo $_SESSION['pageNav']='Contact';?>Contact</a>
+        <a class="nav-link" href="http://localhost/recipeSite/?destination=contact?action=formulaire">Contact</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href=""><?php $_SESSION['pageNav']='';?>Ajout recette</a>
+        <a class="nav-link" href="http://localhost/recipeSite/?destination=recettes?action=ajout">Ajout recette</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="">Mes recettes</a>
+        <a class="nav-link" href="http://localhost/recipeSite/?destination=recettes?action=mes-recettes">Mes recettes</a>
       </li>
     </ul>
   </div>

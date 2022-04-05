@@ -52,12 +52,11 @@ function getRecipesByAuthor($author)
 { // Request By ID avec verif ----------------------------------------------------------------------
     global $mysqlClient;
 
-    $sqlQuery = 'SELECT * FROM recipes WHERE author = :author AND is_enabled = :is_enabled ORDER BY title';
+    $sqlQuery = 'SELECT * FROM recipes WHERE author = :author ORDER BY title';
     try {
         $recipesStatement = $mysqlClient->prepare($sqlQuery);
         $recipesStatement->execute([
             'author' => $author,
-            'is_enabled' => 1,
         ]);
         $recipesByAuthor = $recipesStatement->fetchAll();
         return $recipesByAuthor;
