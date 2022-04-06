@@ -1,39 +1,59 @@
 <?php
 
 /** Get all recipes from one author (all recipes where enabled true)
- * @param string|array
+ * @param string
  * @return string|false
  */
 
 function isUserLogged()
 {
-    global $usersAll;
     $postData = $_POST;
 
     if (isset($postData['email'])) {
-        $i = 0;
-        while (!isset($_SESSION['userLogged']) && $i < count($usersAll)) {
-
-            if (($usersAll[$i]['email'] === $postData['email']) &&
-                ($usersAll[$i]['password'] === $postData['password'])
-            ) {
-
-                $_SESSION['userLogged'] = $usersAll[$i]['full_name'];
-                $_SESSION['userMail'] = $usersAll[$i]['email'];
-                $_SESSION['errMessage'] = '';
-            }
-            ++$i;
+        $isUserKnown = getUser($postData['email']);
+        if ($isUserKnown['email'] === $postData['email']) {
+            $_SESSION['userLogged'] = $isUserKnown['full_name'];
+            $_SESSION['userMail'] = $isUserKnown['email'];
+        }else{
+            ?>
+            <p>
+                Vous devez être enregistré pour accéder aux recettes !! 
+            </p>
+            <?php
         }
     }
     if (!isset($_SESSION['userLogged'])) {
         include_once('html/userLogIn.php');
+        
     } else {
 ?>
         <p>
             Bonjour <?php echo $_SESSION['userLogged'] ?> bienvenu!!!
         </p>
-        <!-- Ajout d'un renvoi index? -->
-        <?php       
+<?php
+    }
+}
+
+
+/** Get one recipe from is id
+ * @param string 
+ * @return array|false
+ */
+function getUser($userLogged)
+{ // Request author  ----------------------------------------------------------------------
+    global $mysqlClient;
+
+    $searchUser = 'SELECT * FROM users WHERE email = :email';
+    try {
+        $recipesStatement = $mysqlClient->prepare($searchUser);
+        $recipesStatement->execute([
+            'email' => $userLogged,
+        ]);
+        $searchUser = $recipesStatement->fetch();
+        return $searchUser;
+    } catch (Exception $e) {
+        echo 'Exception : ', $e->getMessage();
+        return false;
     }
 }
 
@@ -56,8 +76,5 @@ function getAllUsers()
         return false;
     }
 }
-
-
-
 
 ?>
