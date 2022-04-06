@@ -51,7 +51,6 @@ function getRecipeById($idRecipe)
 function getRecipesByAuthor($author)
 { // Request By ID avec verif ----------------------------------------------------------------------
     global $mysqlClient;
-
     $sqlQuery = 'SELECT * FROM recipes WHERE author = :author ORDER BY title';
     try {
         $recipesStatement = $mysqlClient->prepare($sqlQuery);
