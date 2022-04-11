@@ -6,7 +6,7 @@
 function displayRecipe(array $recipe): string // Fonction d'affichage des recettes EN DEUX MORCEAU
 {
     $recipe_content = '<h3 class= "card-title">' . $recipe['title'] . '</h3>';
-    $recipe_content .= '<p class="card-text text-justify">' . $recipe['recipe'] . '</p>';
+    $recipe_content .= '<p class="card-text text-justify">' . $recipe['abstract'] . '</p>';
     return $recipe_content;
 }
 

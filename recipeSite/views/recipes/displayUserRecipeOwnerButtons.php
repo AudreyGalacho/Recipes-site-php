@@ -2,7 +2,7 @@
 if ($recipe['author'] === $_SESSION['userMail']) {
                 ?>
             <form>
-                <a href="?destination=recettes?action=modification?id=<?php echo $recipe['recipe_id']; ?>">
+                <a href="?destination=recipes?action=form?id=update?<?php echo $recipe['recipe_id']; ?>">
                     <input type="button" value="Modifier">
                 </a>
                 <a href="deleteRecipe.php?id=<?php echo $recipe['recipe_id']; ?>">
@@ -11,4 +11,4 @@ if ($recipe['author'] === $_SESSION['userMail']) {
             </form>
             <?php
 }
-            ?>
+?>

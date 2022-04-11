@@ -20,7 +20,7 @@
             </br>
 
             <label for="recipe" class="form-label">Recette</label>
-            <textarea rows="10" class="form-control" id="recipe" name="recipe" required="required"> <?php echo $recipeGet['recipe']; ?></textarea>
+            <textarea rows="10" class="form-control" id="recipe" name="recipe" required="required"> <?php echo $recipeGet['abstract']; ?></textarea>
             <div class="invalid-feedback">
                 Il faut une description a cette recette.
             </div>

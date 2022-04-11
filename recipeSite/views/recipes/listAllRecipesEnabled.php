@@ -4,11 +4,9 @@
  * @param array|array
  * @return string
  */
-function displayListRescipes(array $recipesActiv)
+function displayListRecipes(array $recipesActiv)
 {
-    include_once('displayRecipe.php');
-    include_once('/Users/buutt//Documents/WEB-DEV/first-repository/recipeSite/views/users/displayAuthor.php');
-    include_once('repository/users.php');
+    include_once('views/users/displayAuthor.php');
     $usersAll =getAllUsers();
     foreach ($recipesActiv as $recipe) {
         $dspRecipe = displayRecipe($recipe);
@@ -31,7 +29,6 @@ function displayListRescipes(array $recipesActiv)
  */
 function displayMyListRescipes(array $recipesActiv)
 {
-    include('displayRecipe.php');
     foreach ($recipesActiv as $recipe) {
         $dspRecipe = displayRecipe($recipe);
         ?>

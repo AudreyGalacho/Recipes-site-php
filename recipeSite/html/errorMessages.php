@@ -1,15 +1,22 @@
 <?php
-  switch ($_SESSION['errMessage']) //
-  {
-      case 0: // dans le cas où $page vaut 0
-      echo 'Chemin non valide';
-      break;
-      
-      case 1: // dans le cas où $page vaut 1
-      include("page1b.php");
-      break;
-      
-      default: echo 'It\'s all right' ;
-      ;
-  }
+
+function errMessageSameTitle()
+{
+?>
+  <div class="alert alert-warning" role="alert">
+    Une recette a déjà le même titre!!!
+  </div>;
+<?php
+}
+
+function errMessageSameAbstract()
+{
+?>
+  <div class="alert alert-warning" role="alert">
+    Une recette a déjà le même contenu!!!
+  </div>;
+<?php
+}
+
+
 ?>

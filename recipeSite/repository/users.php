@@ -9,28 +9,22 @@ function isUserLogged()
 {
     $postData = $_POST;
 
-    if (isset($postData['email'])) {
+    if (!isset($postData['email'])) {
+        include_once('html/userLogIn.php');
+    } else {
         $isUserKnown = getUser($postData['email']);
         if ($isUserKnown['email'] === $postData['email']) {
             $_SESSION['userLogged'] = $isUserKnown['full_name'];
             $_SESSION['userMail'] = $isUserKnown['email'];
-        }else{
-            ?>
-            <p>
-                Vous devez être enregistré pour accéder aux recettes !! 
-            </p>
-            <?php
         }
     }
-    if (!isset($_SESSION['userLogged'])) {
-        include_once('html/userLogIn.php');
-        
-    } else {
-?>
+    if (isset($_SESSION['userLogged'])) {
+    ?>
         <p>
             Bonjour <?php echo $_SESSION['userLogged'] ?> bienvenu!!!
         </p>
-<?php
+    <?php   
+        switcher(['recipes','list','all','']);
     }
 }
 

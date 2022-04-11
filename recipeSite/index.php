@@ -1,9 +1,6 @@
 <?php
 session_start();
-include_once('app/database.php');
-include_once('repository/recipes.php');
-include_once('repository/users.php');
-include_once('views/routerDirection.php');
+include_once('app/includeAll.php');
 ?>
 
 <!DOCTYPE html>
@@ -16,9 +13,7 @@ include_once('views/routerDirection.php');
         <div class="container-fluid px-5">
            
             <?php
-            isUserLogged();
-            $chemin=findRoute();
-            router($chemin[0],$chemin[1],$chemin[2]);
+            router();
             ?>
 
         </div>

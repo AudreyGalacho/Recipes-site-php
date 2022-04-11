@@ -10,7 +10,7 @@ function displayAuthor(string $authorEmail): string //Affichage de l'auteur en n
         if ($authorEmail === $user['email']) {
 
             $authorRecipeFullName = $user['full_name'] . ' (' . $user['age'] . ' ans)';
-            $recipeAuthor = '<i><a href="http://localhost/recipeSite/?destination=recettes?action=author?id='.$user['email'].'">' . $authorRecipeFullName . '</a></i>';
+            $recipeAuthor = '<i><a href="http://localhost/recipeSite/?destination=recipes?action=list?id=author?'.$user['email'].'">' . $authorRecipeFullName . '</a></i>';
             return $recipeAuthor;
         }       
     }

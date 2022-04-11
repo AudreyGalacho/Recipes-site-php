@@ -20,7 +20,6 @@ function getAllRecipesOrdered(){
     }
 }
 
-
 /** Get one recipe from is id
  * @param string 
  * @return array|false
@@ -70,16 +69,16 @@ function getRecipesByAuthor($author)
  * @param string $title $detail $id
  * @return string|false
  */
-function updateRecipesById($title , $detail , $id)
+function updateRecipesById($title , $abstract , $id)
 { // Request By ID avec verif ----------------------------------------------------------------------
     global $mysqlClient;
 
-$sqlQuery = 'UPDATE recipes SET title = :title, recipe = :recipe WHERE recipe_id = :id';
+$sqlQuery = 'UPDATE recipes SET title = :title, abstract = :abstract WHERE recipe_id = :id';
 try {
     $insertRecipe = $mysqlClient->prepare($sqlQuery);
     $insertRecipe->execute([
         'title' => $title,
-        'recipe' => $detail,
+        'abstract' => $abstract,
         'id' => $id,
     ]);
     $messageOkUpdate = 'Update OK ';
@@ -89,4 +88,64 @@ try {
     return false;
 
 }
+}
+/** Add recipe to data base
+ * @param string
+ * @return array|false
+ */
+function addRecipe($title,$abstract,$author){
+    global $mysqlClient;
+    $sqlQuery = 'INSERT INTO `recipes`(`title`, `abstract`, `author`,`is_enabled`) VALUES (:title, :abstract, :author, :is_enabled)';
+    try {
+    $insertRecipe = $mysqlClient->prepare($sqlQuery);
+    $insertRecipe->execute([
+        'title' => $title,
+        'abstract' => $abstract,
+        'author' => $author,
+        'is_enabled' => 1,
+    ]);
+    } catch (Exception $e) {
+        echo 'Exception : ', $e->getMessage();
+        return false;
+    }
+    
+}
+
+/** Get recipe by Title
+ * @param string
+ * @return array|false
+ */
+function getRecipeByTitle($title){
+    global $mysqlClient;
+    $sqlQuery = 'SELECT * FROM recipes WHERE title = :title';
+    try {
+        $recipeStatement = $mysqlClient->prepare($sqlQuery);
+        $recipeStatement->execute([
+            'title' => $title,
+        ]);
+        $recipeTitle = $recipeStatement->fetch();
+        return $recipeTitle;
+    } catch (Exception $e) {
+        echo 'Exception : ', $e->getMessage();
+        return false;
+    }
+}
+/** Get recipe by Abstract 
+ * @param string
+ * @return array|false
+ */
+function getRecipeByAbstract($abstract){
+    global $mysqlClient;
+    $sqlQuery = 'SELECT * FROM recipes WHERE abstract = :abstract';
+    try {
+        $recipeStatement = $mysqlClient->prepare($sqlQuery);
+        $recipeStatement->execute([
+            'abstract' => $abstract,
+        ]);
+        $recipeAbstract = $recipeStatement->fetch();
+        return $recipeAbstract;
+    } catch (Exception $e) {
+        echo 'Exception : ', $e->getMessage();
+        return false;
+    }
 }

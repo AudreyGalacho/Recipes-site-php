@@ -7,7 +7,6 @@ include_once('config.php');
             USER_PASSWORD,
             [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION],
         );
-        echo 'Connexion à la bdd  .';
     }
     catch(Exception $e) {    // En cas d'erreur, on affiche un message et on arrête tout
         echo ' ERREUR /!\ ';

@@ -1,6 +1,6 @@
 <div class="container">
     <h1>Ajout de recette</h1>
-    <form action="submitRecipe.php" method="POST">
+    <form action="" method="POST">
         <fieldset>
             <legend>Auteur</legend>
             <?php echo $_SESSION['userMail']; ?>
