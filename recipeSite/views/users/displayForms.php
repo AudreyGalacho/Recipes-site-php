@@ -1,7 +1,7 @@
 <?php
     function displayFormContact(){
         echo '<article>';
-        include_once('html/messageContactForm.php');
+        include_once('html/contactForm.php');
         echo '</article>';
     }
 ?>

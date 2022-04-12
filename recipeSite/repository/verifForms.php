@@ -33,12 +33,10 @@ function checkRecipeAdd($recipe)
  */
 function checkTwinRecipe($title, $abstract)
 {
-    echo $title, $abstract;
-
     // MEME TITRE   
     $recipeGetByTitle = getRecipeByTitle($title);
     $recipeGetByAbstract = getRecipeByAbstract($abstract);
-    var_dump($recipeGetByTitle);
+    
     // if (($recipeGetByAbstract == null) || ($recipeGetByTitle == null)){
 
     // }
@@ -54,7 +52,7 @@ function checkTwinRecipe($title, $abstract)
         errMessageSameAbstract();
         return true;
     }
-    }
+}
     
     // if ((getRecipeByTitle($title) !== $title) &&
     //     (getRecipeByAbstract($abstract) !== $abstract)
