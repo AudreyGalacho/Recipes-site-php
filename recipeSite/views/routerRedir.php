@@ -30,3 +30,4 @@ function backButton() //Le bouton pour retourner à la page acceuil qui pourra s
     </form>
 <?php
 }
+

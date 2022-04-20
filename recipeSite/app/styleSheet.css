@@ -1,0 +1,30 @@
+body {
+    font-family: "Gill Sans Extrabold","cursive",sans-serif;
+    /* font-family: "Goudy Bookletter 1911", sans-serif; */
+    
+}
+div.container-fluid{
+    
+    display: flex;
+    flex-wrap: wrap;
+    align-content:stretch;
+    align-items: stretch;
+    justify-content: center;
+}
+article{
+    flex-grow: 1;
+    margin: 10px;
+    padding: 6px; 
+    width: 30%;
+    border-radius: 15px;
+    background-color: rgba(195, 195, 195, 0.246);
+
+}
+
+p {
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+ 
+    color: brown;
+}
