@@ -85,16 +85,13 @@ function switcher($route)
                         case 'update':
                             echo 'on essay la modif de recipe';
                             $recipeGet = getRecipeById($idPlus);
-                            include_once('html/modifRecipeForm.php');
+                            include_once('html/recipes/modifRecipeForm.php');
                             break;
                         case 'add':
                             verfyAddRecipeAndForm();
                             break;
                         case 'remove':
-                            # code...
-                            break;
-                        case 'verif':
-                            # code...
+                            verfyDeleteRecipe($idPlus);
                             break;
                         default:
                             # code...

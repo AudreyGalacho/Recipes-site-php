@@ -10,7 +10,7 @@ function isUserLogged()
     $postData = $_POST;
 
     if (!isset($postData['email'])) {
-        include_once('html/userLogIn.php');
+        include_once('html/users/userLogIn.php');
     } else {
         $isUserKnown = getUser($postData['email']);
         if ($isUserKnown['email'] === $postData['email']) {

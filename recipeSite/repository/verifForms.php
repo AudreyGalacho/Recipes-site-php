@@ -70,7 +70,7 @@ function checkEmptyRecipe($title, $abstract)
 ?>
         <div class="alert alert-warning" role="alert">
             Le descriptif est vide ! Comment voulez vous suivre la recette?!
-        </div>;
+        </div>
     <?php
         return true;
     }
@@ -78,8 +78,8 @@ function checkEmptyRecipe($title, $abstract)
     ?>
         <div class="alert alert-warning" role="alert">
             Cette recette n'a pas de titre!
-        </div>;
-<?php
+        </div>
+        <?php
         return true;
     }
     if ((!empty($abstract)) && (!empty($title))) {

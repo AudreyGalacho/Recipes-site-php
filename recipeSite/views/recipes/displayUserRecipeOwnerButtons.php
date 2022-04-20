@@ -3,10 +3,10 @@ if ($recipe['author'] === $_SESSION['userMail']) {
                 ?>
             <form>
                 <a href="?destination=recipes?action=form?id=update?<?php echo $recipe['recipe_id']; ?>">
-                    <input type="button" value="Modifier">
+                    <input type="button" class="btn btn-outline-warning" value="Modifier">
                 </a>
-                <a href="deleteRecipe.php?id=<?php echo $recipe['recipe_id']; ?>">
-                    <input type="button" value="Effacer">
+                <a href="?destination=recipes?action=form?id=remove?<?php echo $recipe['recipe_id'] ?>">
+                    <input type="button" class="btn btn-outline-danger" value="Effacer"data-target="#exampleModal">
                 </a>
             </form>
             <?php

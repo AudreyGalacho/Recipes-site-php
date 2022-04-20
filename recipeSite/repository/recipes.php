@@ -5,18 +5,18 @@
  * @return array|false
  */
 // On récupère tout le contenu de la table recipes ordonée
-function getAllRecipesOrdered(){
+function getAllRecipesOrdered()
+{
     global $mysqlClient;
     $sqlQuery = 'SELECT * FROM recipes ORDER BY title';
-        try {
-            $recipesStatement = $mysqlClient->prepare($sqlQuery);
-            $recipesStatement->execute();
-            $recipesActiv = $recipesStatement->fetchAll();
-            echo 'Recuperation des recettes';
-            return $recipesActiv;
-            
-        } catch (Exception $e) {
-            echo 'Exception : ', $e->getMessage();
+    try {
+        $recipesStatement = $mysqlClient->prepare($sqlQuery);
+        $recipesStatement->execute();
+        $recipesActiv = $recipesStatement->fetchAll();
+        echo 'Recuperation des recettes';
+        return $recipesActiv;
+    } catch (Exception $e) {
+        echo 'Exception : ', $e->getMessage();
     }
 }
 
@@ -27,7 +27,6 @@ function getAllRecipesOrdered(){
 function getRecipeById($idRecipe)
 { // Request recipe By ID  ----------------------------------------------------------------------
     global $mysqlClient;
-
     $searchRecipe = 'SELECT * FROM recipes WHERE recipe_id = :id';
     try {
         $recipesStatement = $mysqlClient->prepare($searchRecipe);
@@ -36,6 +35,71 @@ function getRecipeById($idRecipe)
         ]);
         $recipeByiD = $recipesStatement->fetch();
         return $recipeByiD;
+    } catch (Exception $e) {
+        echo 'Exception : ', $e->getMessage();
+        return false;
+    }
+}
+
+/** Delete recipe from ID 
+ * @param string 
+ * @return string|false
+ */
+function removeRecipesById($id)
+{
+    global $mysqlClient;
+    $deleteRecipe = 'DELETE FROM recipes WHERE recipe_id = :id';
+    try {
+        $suppRecipe = $mysqlClient->prepare($deleteRecipe);
+        $suppRecipe->execute([
+            'id' => $id,
+        ]);
+        echo 'RECIPE DELETED ';
+    } catch (Exception $e) {
+        echo 'Exception : ', $e->getMessage();
+    }
+}
+
+/** Update a recipe from his id 
+ * @param string $title $detail $id
+ * @return string|false
+ */
+function updateRecipesById($title, $abstract, $id)
+{ // Request By ID avec verif ----------------------------------------------------------------------
+    global $mysqlClient;
+
+    $sqlQuery = 'UPDATE recipes SET title = :title, abstract = :abstract WHERE recipe_id = :id';
+    try {
+        $insertRecipe = $mysqlClient->prepare($sqlQuery);
+        $insertRecipe->execute([
+            'title' => $title,
+            'abstract' => $abstract,
+            'id' => $id,
+        ]);
+        $messageOkUpdate = 'Update OK ';
+        return $messageOkUpdate;
+    } catch (Exception $e) {
+        echo 'Exception : ', $e->getMessage();
+        return false;
+    }
+}
+
+/** Add recipe to data base
+ * @param string
+ * @return array|false
+ */
+function addRecipe($title, $abstract, $author)
+{
+    global $mysqlClient;
+    $sqlQuery = 'INSERT INTO `recipes`(`title`, `abstract`, `author`,`is_enabled`) VALUES (:title, :abstract, :author, :is_enabled)';
+    try {
+        $insertRecipe = $mysqlClient->prepare($sqlQuery);
+        $insertRecipe->execute([
+            'title' => $title,
+            'abstract' => $abstract,
+            'author' => $author,
+            'is_enabled' => 1,
+        ]);
     } catch (Exception $e) {
         echo 'Exception : ', $e->getMessage();
         return false;
@@ -65,57 +129,13 @@ function getRecipesByAuthor($author)
 }
 
 
-/** Update a recipe from his id 
- * @param string $title $detail $id
- * @return string|false
- */
-function updateRecipesById($title , $abstract , $id)
-{ // Request By ID avec verif ----------------------------------------------------------------------
-    global $mysqlClient;
-
-$sqlQuery = 'UPDATE recipes SET title = :title, abstract = :abstract WHERE recipe_id = :id';
-try {
-    $insertRecipe = $mysqlClient->prepare($sqlQuery);
-    $insertRecipe->execute([
-        'title' => $title,
-        'abstract' => $abstract,
-        'id' => $id,
-    ]);
-    $messageOkUpdate = 'Update OK ';
-    return $messageOkUpdate;
-} catch (Exception $e) {
-    echo 'Exception : ', $e->getMessage();
-    return false;
-
-}
-}
-/** Add recipe to data base
- * @param string
- * @return array|false
- */
-function addRecipe($title,$abstract,$author){
-    global $mysqlClient;
-    $sqlQuery = 'INSERT INTO `recipes`(`title`, `abstract`, `author`,`is_enabled`) VALUES (:title, :abstract, :author, :is_enabled)';
-    try {
-    $insertRecipe = $mysqlClient->prepare($sqlQuery);
-    $insertRecipe->execute([
-        'title' => $title,
-        'abstract' => $abstract,
-        'author' => $author,
-        'is_enabled' => 1,
-    ]);
-    } catch (Exception $e) {
-        echo 'Exception : ', $e->getMessage();
-        return false;
-    }
-    
-}
 
 /** Get recipe by Title
  * @param string
  * @return array|false
  */
-function getRecipeByTitle($title){
+function getRecipeByTitle($title)
+{
     global $mysqlClient;
     $sqlQuery = 'SELECT * FROM recipes WHERE title = :title';
     try {
@@ -134,7 +154,8 @@ function getRecipeByTitle($title){
  * @param string
  * @return array|false
  */
-function getRecipeByAbstract($abstract){
+function getRecipeByAbstract($abstract)
+{
     global $mysqlClient;
     $sqlQuery = 'SELECT * FROM recipes WHERE abstract = :abstract';
     try {

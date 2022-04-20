@@ -14,7 +14,7 @@
 //Affichage
     include_once('views/recipes/displayRecipe.php');
     include_once('views/recipes/listAllRecipesEnabled.php');
-    include_once('html/errorMessages.php');
+    include_once('html/recipes/errorMessages.php');
 
 
 
