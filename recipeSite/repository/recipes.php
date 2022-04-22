@@ -13,7 +13,6 @@ function getAllRecipesOrdered()
         $recipesStatement = $mysqlClient->prepare($sqlQuery);
         $recipesStatement->execute();
         $recipesActiv = $recipesStatement->fetchAll();
-        echo 'Recuperation des recettes';
         return $recipesActiv;
     } catch (Exception $e) {
         echo 'Exception : ', $e->getMessage();

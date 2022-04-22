@@ -5,7 +5,7 @@
  */
 function router()
 {
-    echo ' ROOOUUUTIIINNNG ' . '</br>';
+    // echo ' ROOOUUUTIIINNNG ' ;
 
     if (!isset($_SESSION['userLogged'])) {
         
@@ -34,7 +34,7 @@ function findRoute()
     $url = $_SERVER['REQUEST_URI'];
     $extention = (parse_url($url, PHP_URL_QUERY));
     $arguments = explode('?', $extention);
-    var_dump($arguments);
+    // var_dump($arguments);
     $destination = explode('=', $arguments[0]);
     $action = explode('=', $arguments[1]);    
     $id = explode('=', $arguments[2]);
@@ -57,7 +57,6 @@ function switcher($route)
     $id = $route[2];
     $idPlus = $route[3];
 
-    echo ' SWTICHER ';
     switch ($destination) {
         case 'recipes':
             switch ($action) {
@@ -83,15 +82,13 @@ function switcher($route)
                     include_once('views/recipes/crudFunctionsRecipe.php');
                     switch ($id) {
                         case 'update':
-                            echo 'on essay la modif de recipe';
-                            $recipeGet = getRecipeById($idPlus);
-                            include_once('html/recipes/modifRecipeForm.php');
+                            verifyUpdateRecipe($idPlus);
                             break;
                         case 'add':
-                            verfyAddRecipeAndForm();
+                            verifyAddRecipeAndForm();
                             break;
                         case 'remove':
-                            verfyDeleteRecipe($idPlus);
+                            verifyDeleteRecipe($idPlus);
                             break;
                         default:
                             # code...
@@ -150,7 +147,6 @@ function switcher($route)
             }
             break;
         default:
-            echo ' Par défault ';
             break;
     }
 }

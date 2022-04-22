@@ -11,7 +11,6 @@ include_once('app/includeAll.php');
     <?php include_once('html/body/header.php'); ?>
     <section>
         <div class="container-fluid px-5">
-           
             <?php
             router();
             ?>

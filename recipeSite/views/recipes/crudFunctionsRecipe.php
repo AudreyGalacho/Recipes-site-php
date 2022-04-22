@@ -4,18 +4,18 @@
  * @param  
  * @return bool
  */
-function verfyAddRecipeAndForm()
+function verifyAddRecipeAndForm()
 {
 
-    if (!isset($_POST['recipe']) || !isset($_POST['title'])) {
+    if (!isset($_POST['abstract']) || !isset($_POST['title'])) {
         include('html/recipes/addRecipeForm.php');
     } else {
         $titleNew = htmlspecialchars($_POST['title']);
-        $abstracNew = htmlspecialchars($_POST['recipe']);
+        $abstracNew = htmlspecialchars($_POST['abstract']);
         $author = $_SESSION['userMail'];
         $recipe = [$titleNew, $abstracNew, $author];
         // Verif si recette ok
-        $resultCheck = checkRecipeAdd($recipe);
+        $resultCheck = checkRecipe($recipe);
         if ($resultCheck == false) {
             include('html/recipes/addRecipeForm.php');
         }
@@ -36,7 +36,7 @@ function verfyAddRecipeAndForm()
  * @param  
  * @return bool
  */
-function verfyDeleteRecipe($id)
+function verifyDeleteRecipe($id)
 {
     include_once('repository/recipes.php');
     $recipe = getRecipeById($id);
@@ -93,4 +93,51 @@ function deleteConfirm()
         removeRecipesById($id);
         switcher(['recipe','list','all','']);
     }
+}
+
+function verifyUpdateRecipe($id){
+    include_once('repository/recipes.php');
+    $recipe = getRecipeById($id);
+    
+    $authorID = $recipe['author'];
+    $abstract = $recipe['abstract'];
+    $title = $recipe['title'];
+    
+
+    if ($_SESSION['userMail'] !== $authorID) {
+        echo 'Oh..Oh.. Vous n\'avez pas le droit de modifier cette recette!!';
+        ?></br><?php
+            echo 'Vous êtes ' . $_SESSION['userMail'] . ' et non ' . $authorID . '!';
+            backButton();
+            return;
+    }
+    if (!isset($_POST['abstract']) || !isset($_POST['title'])) {
+        include('html/recipes/modifRecipeForm.php');
+    }
+     else {
+         
+        $titleNew = htmlspecialchars($_POST['title']);
+        $abstracNew = htmlspecialchars($_POST['abstract']);
+        $id= $_POST['id'];
+        $recipe = [$titleNew, $abstracNew];
+        // Verif si recette ok
+        $verifEmpty = checkEmptyRecipe($title, $abstract);
+        var_dump($verifEmpty) ;
+        
+       
+        if ($verifEmpty == true) {
+            include('html/recipes/modifRecipeForm.php');
+            
+        } else {
+            //requete ajout dans base
+            updateRecipesById($titleNew, $abstracNew, $id);
+?>
+            <div class="alert alert-success" role="alert">
+                Recette Modifiée!
+            </div>
+    <?php
+            switcher(['recipes', 'list', 'all', '']);
+        }
+    }
+;
 }

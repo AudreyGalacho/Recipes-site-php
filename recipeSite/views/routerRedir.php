@@ -1,7 +1,7 @@
 <?php
 function displayAllRecipes()
 {
-    echo 'display all recipes';
+    // echo 'display all recipes';
     $usersAll = getAllUsers();
     $recipesAll = getAllRecipesOrdered();
     displayListRecipes($recipesAll, $usersAll);
@@ -9,7 +9,7 @@ function displayAllRecipes()
 
 function displayFormLog()
 {
-    echo 'form LOG';
+    // echo 'form LOG';
     $usersAll = getAllUsers();
     isUserLogged($_POST, $usersAll);
 }

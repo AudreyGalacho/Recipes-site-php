@@ -16,8 +16,8 @@
                 Il faut un titre a cette recette.
             </div>
 
-            <label for="recipe" class="form-label">Recette</label>
-            <textarea class="form-control" rows="5" placeholder="Détails de votre recette" id="recipe" name="recipe" required="required"></textarea>
+            <label for="abstract" class="form-label">Recette</label>
+            <textarea class="form-control" rows="5" placeholder="Détails de votre recette" id="abstract" name="abstract" required="required"></textarea>
             <div class="invalid-feedback">
                 Il faut une description a cette recette.
             </div>

@@ -1,10 +1,10 @@
 <?php
 
-/** Verify form add recipe
+/** Verify twins and empty form recipe
  * @param array 
  * @return bool
  */
-function checkRecipeAdd($recipe)
+function checkRecipe($recipe)
 {
 
     $title = $recipe[0];
@@ -22,7 +22,7 @@ function checkRecipeAdd($recipe)
         $title = htmlspecialchars($title);
         $abstract = htmlspecialchars($abstract);
         //Requète d'insertion
-        echo 'Tout est OK...';
+        // echo 'Tout est OK...';
         return true;
     }
 }
