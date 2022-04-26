@@ -8,43 +8,42 @@ function router()
     // echo ' ROOOUUUTIIINNNG ' ;
 
     if (!isset($_SESSION['userLogged'])) {
-        
         isUserLogged();
+    } else {
+        findRoute();
     }
-    if (isset($_SESSION['userLogged'])) {
-
-        $route = findRoute();
-
-        if (!isset($route[0]) || !isset($route[1]) || !isset($route[2])){
-            $destination = 'recipes';
-            $action = 'list';
-            $id ='all';
-            switcher($destination, $action, $id);
-        } else {
-            switcher($route[0], $route[1], $route[2]);
-        }
+        
     }
-}
 /** Url decomposition to router
  * @param string
  * @return string|string
  */
 function findRoute()
 {
+    
     $url = $_SERVER['REQUEST_URI'];
     $extention = (parse_url($url, PHP_URL_QUERY));
     $arguments = explode('?', $extention);
-    // var_dump($arguments);
-    $destination = explode('=', $arguments[0]);
-    $action = explode('=', $arguments[1]);    
-    $id = explode('=', $arguments[2]);
-    if (count($arguments) == 3){
-        $idPlus[0]='';
-    } else { 
+
+    if (count($arguments) == "4"){
+        $destination = explode('=', $arguments[0]);
+        $action = explode('=', $arguments[1]);    
+        $id = explode('=', $arguments[2]);
         $idPlus = explode('=', $arguments[3]);
+        $route = [$destination[1], $action[1], $id[1], $idPlus[0]];
+        switcher($route);
     }
-    $route = [$destination[1], $action[1], $id[1], $idPlus[0]];
-    switcher($route);
+    if(count($arguments) == "3"){
+        $destination = explode('=', $arguments[0]);
+        $action = explode('=', $arguments[1]);    
+        $id = explode('=', $arguments[2]);
+        $idPlus[0]='';
+        $route = [$destination[1], $action[1], $id[1], $idPlus[0]];
+  
+    } else {
+        $route = ['recipes','list','all',''];
+        switcher($route);
+    }
 }
 /** Switch action Url
  * @param array
@@ -56,6 +55,10 @@ function switcher($route)
     $action = $route[1];
     $id = $route[2];
     $idPlus = $route[3];
+    var_dump($route);?>
+    </br>
+    <?php
+    echo 'SWITCHER';
 
     switch ($destination) {
         case 'recipes':
