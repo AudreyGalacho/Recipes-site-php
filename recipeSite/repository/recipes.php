@@ -175,12 +175,15 @@ function getRecipeByAbstract($abstract)
  */
 function getNextRecipe($idRecipe)
 {
+    $recipeById=getRecipeById($idRecipe);
+    $titleRecipe =$recipeById['title'];
+
     global $mysqlClient;    
-    $sqlQuery = 'SELECT * FROM recipes WHERE recipe_id = (SELECT MIN(recipe_id) FROM recipes WHERE recipe_id > :idRef)';
+    $sqlQuery = 'SELECT * FROM recipes WHERE title = (SELECT MIN(title) FROM recipes WHERE title > :titleRef)';
     try {
         $recipeStatement = $mysqlClient->prepare($sqlQuery);
         $recipeStatement->execute([
-        'idRef' => $idRecipe,
+        'titleRef' => $titleRecipe,
     ]);
     $recipeNext = $recipeStatement->fetch();
     return $recipeNext;
@@ -196,12 +199,15 @@ function getNextRecipe($idRecipe)
  */
 function getPreviewRecipe($idRecipe)
 {
+    $recipeById=getRecipeById($idRecipe);
+    $titleRecipe =$recipeById['title'];
+
     global $mysqlClient;    
-    $sqlQuery = 'SELECT * FROM recipes WHERE recipe_id = (SELECT MAX(recipe_id) FROM recipes WHERE recipe_id < :idRef)';
+    $sqlQuery = 'SELECT * FROM recipes WHERE title = (SELECT MAX(title) FROM recipes WHERE title < :titleRef)';
     try {
         $recipeStatement = $mysqlClient->prepare($sqlQuery);
         $recipeStatement->execute([
-        'idRef' => $idRecipe,
+        'titleRef' => $titleRecipe,
     ]);
     $recipePreview = $recipeStatement->fetch();
     return $recipePreview;
