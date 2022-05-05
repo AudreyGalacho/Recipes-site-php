@@ -14,17 +14,29 @@ div.container-fluid{
 }
 article{
     flex-grow: 1;
+    display: flex;
     margin: 10px;
-    padding: 6px; 
+    padding: 6px;
     width: 30%;
     border-radius: 15px;
     background-color: rgba(195, 195, 195, 0.246);
+    flex-direction: column;
 
+}
+textarea.full-text {
+    
+    width: 100%;
+    overflow-y: visible;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+    
 }
 div.full-text{
     padding: 1%;
+    width: 100%;
 }
-
 p {
     text-overflow: ellipsis; 
 }
@@ -32,22 +44,32 @@ p {
 p.hide-text {
     overflow: hidden;
     white-space: nowrap;
-    
 }
 /* BUTTONS */
 a {
-    text-decoration: none;
-    
+    text-decoration: none;  
+}
+a:hover{
+text-decoration: none;
 }
 a.round{
     font-size: 2em;
     display: inline-block;
     padding: 0 0.6em 0.2em 0.6em;
     border: solid 3px black;
-    padding: auto;
     border-radius: 25%;
 }
 a.round:hover {
     background-color: #ddd;
     color: black;
+    text-decoration: none;
   }
+div.fullButtonRecipe{
+    display: flex;
+    justify-content: space-between;
+}
+div.navigationButton{
+    padding: 1%;
+    display: flex;
+    justify-content: space-between;
+}

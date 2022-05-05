@@ -11,11 +11,11 @@
             <input type="hidden" class="form-control" id="id" name="id" <?php echo 'value="' . $id . '"'; ?>>
 
             <label for="title" class="form-label">Titre:</label></br>
-            <?php echo $title; ?>
+            <h3><?php echo $title; ?></h3>
             </br>
 
             </br><label for="abstract" class="form-label">Recette:</label></br>
-            <?php echo $abstract; ?>
+            <textarea class="full-text" readonly><?php echo $abstract; ?></textarea>
         </fieldset>
         </br>
         <div>Souhaitez-vous supprimer définitivement votre recette?</div>

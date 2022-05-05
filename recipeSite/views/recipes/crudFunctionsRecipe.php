@@ -96,7 +96,7 @@ function deleteConfirm()
 }
 
 function verifyUpdateRecipe($id){
-    include_once('repository/recipes.php');
+    // include_once('repository/recipes.php');
     $recipe = getRecipeById($id);
     
     $authorID = $recipe['author'];
@@ -122,11 +122,12 @@ function verifyUpdateRecipe($id){
         $recipe = [$titleNew, $abstracNew];
         // Verif si recette ok
         $verifEmpty = checkEmptyRecipe($title, $abstract);
-        var_dump($verifEmpty) ;
+        // var_dump($verifEmpty) ;
         
        
         if ($verifEmpty == true) {
             include('html/recipes/modifRecipeForm.php');
+            return;
             
         } else {
             //requete ajout dans base
@@ -139,5 +140,4 @@ function verifyUpdateRecipe($id){
             switcher(['recipes', 'list', 'all', '']);
         }
     }
-;
 }

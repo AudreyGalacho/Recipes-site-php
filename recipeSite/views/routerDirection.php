@@ -22,30 +22,26 @@ function findRoute()
 {
     
     $url = $_SERVER['REQUEST_URI'];
-    $extention = (parse_url($url, PHP_URL_QUERY));
-    $arguments = explode('?', $extention);
-    // var_dump($arguments);
+    // $url = 'http://localhost/recipeSite/?recipes/list/one/13';
 
+    $extention = (parse_url($url, PHP_URL_QUERY));
+    $arguments = explode('/', $extention);
+    // $argument = explode('/', $arguments);
+    // var_dump(count($arguments));
+    
     if (count($arguments) == "4"){
-        echo(' 4 arguments get ');
-        $destination = explode('=', $arguments[0]);
-        $action = explode('=', $arguments[1]);    
-        $id = explode('=', $arguments[2]);
-        $idPlus = explode('=', $arguments[3]);
-        $route = [$destination[1], $action[1], $id[1], $idPlus[0]];
-        
+        // echo(' 4 arguments get ');
+        $route = $arguments;
+        // var_dump($route);
         switcher($route);
     }
     if(count($arguments) == "3"){
-        echo(' 3 arguments get ');
-        $destination = explode('=', $arguments[0]);
-        $action = explode('=', $arguments[1]);    
-        $id = explode('=', $arguments[2]);
-        $idPlus[0]='';
-        $route = [$destination[1], $action[1], $id[1], $idPlus[0]];
+        // echo(' 3 arguments get ');
+        $route= $arguments;
+        $idPlus='';
+        array_push($route, $idPlus);
         switcher($route);
-        
-  
+
     } else {
         echo (' Other Road ');
         $route = ['recipes','list','all',''];
@@ -65,7 +61,7 @@ function switcher($route)
     // var_dump($route);?>
     </br>
     <?php
-    echo ' SWITCHER ';
+    // echo ' SWITCHER ';
 // var_dump($route);
     switch ($destination) {
         case 'recipes':

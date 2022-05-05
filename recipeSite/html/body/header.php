@@ -10,16 +10,16 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="http://localhost/recipeSite/?destination=recipes?action=list?id=all">Home</a>
+        <a class="nav-link" href="http://localhost/recipeSite/?recipes/list/all">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="http://localhost/recipeSite/?destination=recipes?action=form?id=add">Ajout recette</a>
+        <a class="nav-link" href="http://localhost/recipeSite/?recipes/form/add">Ajout recette</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="http://localhost/recipeSite/?destination=recipes?action=list?id=my_recipes">Mes recettes</a>
+        <a class="nav-link" href="http://localhost/recipeSite/?recipes/list/my_recipes">Mes recettes</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="http://localhost/recipeSite/?destination=user?action=contact?id=form">Contact</a>
+        <a class="nav-link" href="http://localhost/recipeSite/?user/contact/form">Contact</a>
       </li>
     </ul>
   </div>
