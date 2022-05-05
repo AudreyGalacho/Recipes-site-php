@@ -8,13 +8,14 @@ function displayListRecipes(array $recipesActiv)
 {
     include_once('views/users/displayAuthor.php');
     $usersAll =getAllUsers();
+    echo('Function display recipelist');
     foreach ($recipesActiv as $recipe) {
         $dspRecipe = displayRecipe($recipe);
         $dspEndRecipeAuthor = displayAuthor($recipe['author'], $usersAll);
 ?>
         <article>
-                <?php echo $dspRecipe . $dspEndRecipeAuthor;
-               include('displayUserRecipeOwnerButtons.php'); ?>
+            <?php echo $dspRecipe . $dspEndRecipeAuthor;
+            buttonOwnerUptateRemove($recipe); ?>
         </article>
 <?php
     }
@@ -30,11 +31,12 @@ function displayMyListRescipes(array $recipesActiv)
         $dspRecipe = displayRecipe($recipe);
         ?>
         <article>
-                <?php echo $dspRecipe;
-                include('displayUserRecipeOwnerButtons.php');
+            <?php echo $dspRecipe;
+            buttonOwnerUptateRemove($recipe);
             ?>  
         </article>
 <?php
     }
 }
+
 

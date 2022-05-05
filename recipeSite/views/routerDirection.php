@@ -5,7 +5,7 @@
  */
 function router()
 {
-    // echo ' ROOOUUUTIIINNNG ' ;
+    //  echo ' ROOOUUUTIIINNNG ' ;
 
     if (!isset($_SESSION['userLogged'])) {
         isUserLogged();
@@ -24,23 +24,30 @@ function findRoute()
     $url = $_SERVER['REQUEST_URI'];
     $extention = (parse_url($url, PHP_URL_QUERY));
     $arguments = explode('?', $extention);
+    // var_dump($arguments);
 
     if (count($arguments) == "4"){
+        echo(' 4 arguments get ');
         $destination = explode('=', $arguments[0]);
         $action = explode('=', $arguments[1]);    
         $id = explode('=', $arguments[2]);
         $idPlus = explode('=', $arguments[3]);
         $route = [$destination[1], $action[1], $id[1], $idPlus[0]];
+        
         switcher($route);
     }
     if(count($arguments) == "3"){
+        echo(' 3 arguments get ');
         $destination = explode('=', $arguments[0]);
         $action = explode('=', $arguments[1]);    
         $id = explode('=', $arguments[2]);
         $idPlus[0]='';
         $route = [$destination[1], $action[1], $id[1], $idPlus[0]];
+        switcher($route);
+        
   
     } else {
+        echo (' Other Road ');
         $route = ['recipes','list','all',''];
         switcher($route);
     }
@@ -55,11 +62,11 @@ function switcher($route)
     $action = $route[1];
     $id = $route[2];
     $idPlus = $route[3];
-    var_dump($route);?>
+    // var_dump($route);?>
     </br>
     <?php
-    echo 'SWITCHER';
-
+    echo ' SWITCHER ';
+// var_dump($route);
     switch ($destination) {
         case 'recipes':
             switch ($action) {
@@ -75,6 +82,12 @@ function switcher($route)
                         case 'author':
                             $recipeByAuthor = getRecipesByAuthor($idPlus);
                             displayListRecipes($recipeByAuthor);
+                            break;
+                        case 'one':                     
+                            // display one recipe  by title (full text) and commentry form
+                            $recipeById = getRecipeById($idPlus);
+                            echo (displayFullRecipe($recipeById));
+                            // include('html/users/commentryForm.php');
                             break;
                         default:
                             echo 'recettes défault';
@@ -136,6 +149,7 @@ function switcher($route)
                 case 'contact':
                     switch ($id) {
                         case 'form':
+                            echo('form contact switcher');
                             include('views/users/displayForms.php');
                             displayFormContact();
                             break;

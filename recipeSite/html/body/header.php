@@ -16,7 +16,7 @@
         <a class="nav-link" href="http://localhost/recipeSite/?destination=recipes?action=form?id=add">Ajout recette</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="http://localhost/recipeSite/?destination=recipes?action=list?id=my_recipes?">Mes recettes</a>
+        <a class="nav-link" href="http://localhost/recipeSite/?destination=recipes?action=list?id=my_recipes">Mes recettes</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="http://localhost/recipeSite/?destination=user?action=contact?id=form">Contact</a>

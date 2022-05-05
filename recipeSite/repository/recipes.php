@@ -169,3 +169,52 @@ function getRecipeByAbstract($abstract)
         return false;
     }
 }
+/** Get the next recipe in the table 
+ * @param string
+ * @return array|false
+ */
+function getNextRecipe($idRecipe)
+{
+    global $mysqlClient;    
+    $sqlQuery = 'SELECT * FROM recipes WHERE recipe_id = (SELECT MIN(recipe_id) FROM recipes WHERE recipe_id > :idRef)';
+    try {
+        $recipeStatement = $mysqlClient->prepare($sqlQuery);
+        $recipeStatement->execute([
+        'idRef' => $idRecipe,
+    ]);
+    $recipeNext = $recipeStatement->fetch();
+    return $recipeNext;
+    } catch (Exception $e) {
+    echo 'Exception : ', $e->getMessage();
+    return false;
+    }
+}
+
+/** Get the previews recipe in the table 
+ * @param string
+ * @return array|false
+ */
+function getPreviewRecipe($idRecipe)
+{
+    global $mysqlClient;    
+    $sqlQuery = 'SELECT * FROM recipes WHERE recipe_id = (SELECT MAX(recipe_id) FROM recipes WHERE recipe_id < :idRef)';
+    try {
+        $recipeStatement = $mysqlClient->prepare($sqlQuery);
+        $recipeStatement->execute([
+        'idRef' => $idRecipe,
+    ]);
+    $recipePreview = $recipeStatement->fetch();
+    return $recipePreview;
+    } catch (Exception $e) {
+    echo 'Exception : ', $e->getMessage();
+    return false;
+    }
+}
+
+/** Jointure de table 
+ * @param
+ * @return array|false
+ */
+
+//  global $mysqlClient;
+//  $sqlQuery = 

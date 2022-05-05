@@ -8,7 +8,7 @@
 function isUserLogged()
 {
     $postData = $_POST;
-
+    echo('Is user logged');
     if (!isset($postData['email'])) {
         include_once('html/users/userLogIn.php');
     } else {

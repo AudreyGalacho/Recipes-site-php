@@ -15,6 +15,9 @@
     include_once('views/recipes/displayRecipe.php');
     include_once('views/recipes/listAllRecipesEnabled.php');
     include_once('html/recipes/errorMessages.php');
+    include_once('views/recipes/displayButtons.php');
+    include_once('views/users/displayAuthor.php');
+
 
 
 
