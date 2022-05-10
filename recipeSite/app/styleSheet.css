@@ -1,18 +1,20 @@
 body {
-    font-family: "Gill Sans Extrabold","cursive",sans-serif;
+    font-family: "Gill Sans Extrabold", "cursive", sans-serif;
     /* font-family: "Goudy Bookletter 1911", sans-serif; */
     color: black;
 }
 
-div.container-fluid{
-    
+div.container-fluid {
+
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
-    align-content:stretch;
+    align-content: stretch;
     align-items: stretch;
     justify-content: center;
 }
-article{
+
+article {
     flex-grow: 1;
     display: flex;
     margin: 10px;
@@ -23,53 +25,86 @@ article{
     flex-direction: column;
 
 }
+
 textarea.full-text {
-    
+
     width: 100%;
     overflow-y: visible;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;
     resize: none;
-    
+
 }
-div.full-text{
+
+div.full-text {
     padding: 1%;
     width: 100%;
 }
+
 p {
-    text-overflow: ellipsis; 
+    text-overflow: ellipsis;
 }
+
 /* p for mozaic recipe, abstract hiden */
 p.hide-text {
     overflow: hidden;
     white-space: nowrap;
 }
+
 /* BUTTONS */
-a {
-    text-decoration: none;  
-}
-a:hover{
-text-decoration: none;
-}
-a.round{
-    font-size: 2em;
-    display: inline-block;
-    padding: 0 0.6em 0.2em 0.6em;
-    border: solid 3px black;
-    border-radius: 25%;
-}
-a.round:hover {
-    background-color: #ddd;
+a{
     color: black;
     text-decoration: none;
-  }
-div.fullButtonRecipe{
+}
+
+a:hover {
+    color: #bababa;
+}
+
+a.buttonBack {
+    align-self: center;
+}
+
+a.round {
+    font-size: 2em;
+    display: inline-block;
+    background-color: #7d7d7d;
+    padding: 0 0.6em 0.2em 0.6em;
+    border: solid 1px rgb(141 141 141);
+    border-radius: 25%;
+    color: silver;
+}
+
+a.round:hover {
+    background-color: #d7d7d7;
+    color: black;
+    text-decoration: none;
+    border: solid 1px rgb(255 255 255);
+}
+
+div.fullButtonRecipe {
+    padding: 5px 0;
     display: flex;
     justify-content: space-between;
 }
-div.navigationButton{
-    padding: 1%;
+
+div.navigationButton {
+    padding: 0 1%;
     display: flex;
     justify-content: space-between;
+}
+
+p.debug-display {
+    background-color: rgba(95, 23, 23, 0.214);
+    width: inherit;
+    height: 1%;
+    padding: 10px;
+    margin: auto;
+    text-align: center;
+}
+.alert{
+    flex-grow: 1;
+    width: max-content;
+    align-self:flex-start;
 }

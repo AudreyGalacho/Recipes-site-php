@@ -19,17 +19,15 @@ function isUserLogged()
         }
     }
     if (isset($_SESSION['userLogged'])) {
-    ?>
-        <p>
-            Bonjour <?php echo $_SESSION['userLogged'] ?> bienvenu!!!
-        </p>
-    <?php   
+    
+        $messageWelcome ='<p> Bonjour'. $_SESSION['userLogged'].' bienvenu!!!</p>';
+        // insertMessage($messageWelcome);
         switcher(['recipes','list','all','']);
     }
 }
 
 
-/** Get one recipe from is id
+/** Get details on user logged
  * @param string 
  * @return array|false
  */

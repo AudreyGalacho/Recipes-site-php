@@ -4,24 +4,22 @@
  * @param array
  * @return 
  */
-
 function buttonOwnerUptateRemove($recipe)
 {
     if ($recipe['author'] === $_SESSION['userMail']) {
 ?>
         <div class="ownerButton">
-            <form>
-                <a href="?recipes/form/update/<?php echo $recipe['recipe_id']; ?>">
+                <a class="text-decoration-none" href="?recipes/form/update/<?php echo $recipe['recipe_id']; ?>">
                     <input type="button" class="btn btn-outline-warning" value="Modifier">
                 </a>
-                <a href="?recipes/form/remove/<?php echo $recipe['recipe_id']; ?>">
+                <a class="text-decoration-none" href="?recipes/form/remove/<?php echo $recipe['recipe_id']; ?>">
                     <input type="button" class="btn btn-outline-danger" value="Effacer">
                 </a>
-            </form>
         </div>
     <?php
     }
 }
+
 /** Display button return on main page
  * @param 
  * @return 
@@ -29,11 +27,9 @@ function buttonOwnerUptateRemove($recipe)
 function backButton() //Le bouton pour retourner à la page acceuil qui pourra servir de bouton juste retour un jour
 {
     ?>
-    <form>
-        <a href="http://localhost/recipeSite/?recipes/list/all">
+        <a class="buttonBack text-decoration-none" href="http://localhost/recipeSite/?recipes/list/all">
             <input type="button" class="btn btn-secondary" value="Retour" name="Retour">
         </a>
-    </form>
     <?php
 }
 

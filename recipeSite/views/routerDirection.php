@@ -1,26 +1,26 @@
 <?php
+
 /** Route action
  * @param 
  * @return 
  */
 function router()
 {
-    //  echo ' ROOOUUUTIIINNNG ' ;
+    // echo ' ROOOUUUTIIINNNG ' ;
 
     if (!isset($_SESSION['userLogged'])) {
         isUserLogged();
     } else {
         findRoute();
     }
-        
-    }
+}
 /** Url decomposition to router
  * @param string
  * @return string|string
  */
 function findRoute()
 {
-    
+
     $url = $_SERVER['REQUEST_URI'];
     // $url = 'http://localhost/recipeSite/?recipes/list/one/13';
 
@@ -28,23 +28,24 @@ function findRoute()
     $arguments = explode('/', $extention);
     // $argument = explode('/', $arguments);
     // var_dump(count($arguments));
-    
-    if (count($arguments) == "4"){
+
+    if (count($arguments) == "4") {
         // echo(' 4 arguments get ');
         $route = $arguments;
         // var_dump($route);
         switcher($route);
+        return;
     }
-    if(count($arguments) == "3"){
+    if (count($arguments) == "3") {
         // echo(' 3 arguments get ');
-        $route= $arguments;
-        $idPlus='';
+        $route = $arguments;
+        $idPlus = '';
         array_push($route, $idPlus);
         switcher($route);
-
+        return;
     } else {
         echo (' Other Road ');
-        $route = ['recipes','list','all',''];
+        $route = ['recipes', 'list', 'all', ''];
         switcher($route);
     }
 }
@@ -58,11 +59,12 @@ function switcher($route)
     $action = $route[1];
     $id = $route[2];
     $idPlus = $route[3];
-    // var_dump($route);?>
+    // var_dump($route);
+?>
     </br>
-    <?php
+<?php
     // echo ' SWITCHER ';
-// var_dump($route);
+    // var_dump($route);
     switch ($destination) {
         case 'recipes':
             switch ($action) {
@@ -79,10 +81,11 @@ function switcher($route)
                             $recipeByAuthor = getRecipesByAuthor($idPlus);
                             displayListRecipes($recipeByAuthor);
                             break;
-                        case 'one':                     
-                            // display one recipe  by title (full text) and commentry form
-                            $recipeById = getRecipeById($idPlus);
-                            echo (displayFullRecipe($recipeById));
+                        case 'one':
+                            // display one recipe order by title (full text) and commentry form
+                            $tableJoin = recipeJoinUser(); //jointure table
+                            $recipeJoinGet = getRecipeJoin($idPlus, $tableJoin); //fetch id match
+                            displayFullRecipe($recipeJoinGet);
                             // include('html/users/commentryForm.php');
                             break;
                         default:
@@ -95,6 +98,7 @@ function switcher($route)
                     switch ($id) {
                         case 'update':
                             verifyUpdateRecipe($idPlus);
+                            // echo 'On veut stopper LA ';
                             break;
                         case 'add':
                             verifyAddRecipeAndForm();
@@ -103,14 +107,11 @@ function switcher($route)
                             verifyDeleteRecipe($idPlus);
                             break;
                         default:
-                            # code...
                             break;
                     }
                     break;
-
                 default:
-                    # code...
-                    break;
+                break;
             }
             break;
         case 'user':
@@ -145,7 +146,7 @@ function switcher($route)
                 case 'contact':
                     switch ($id) {
                         case 'form':
-                            echo('form contact switcher');
+                            // echo 'form contact switcher';
                             include('views/users/displayForms.php');
                             displayFormContact();
                             break;
@@ -163,3 +164,4 @@ function switcher($route)
             break;
     }
 }
+

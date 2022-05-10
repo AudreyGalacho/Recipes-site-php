@@ -5,19 +5,19 @@
  * @return array|false
  */
 // On récupère tout le contenu de la table recipes ordonée
-function getAllRecipesOrdered()
-{
-    global $mysqlClient;
-    $sqlQuery = 'SELECT * FROM recipes ORDER BY title';
-    try {
-        $recipesStatement = $mysqlClient->prepare($sqlQuery);
-        $recipesStatement->execute();
-        $recipesActiv = $recipesStatement->fetchAll();
-        return $recipesActiv;
-    } catch (Exception $e) {
-        echo 'Exception : ', $e->getMessage();
-    }
-}
+// function getAllRecipesOrdered()
+// {
+//     global $mysqlClient;
+//     $sqlQuery = 'SELECT * FROM recipes ORDER BY title';
+//     try {
+//         $recipesStatement = $mysqlClient->prepare($sqlQuery);
+//         $recipesStatement->execute();
+//         $recipesActiv = $recipesStatement->fetchAll();
+//         return $recipesActiv;
+//     } catch (Exception $e) {
+//         echo 'Exception : ', $e->getMessage();
+//     }
+// }
 
 /** Get one recipe from is id
  * @param string 
@@ -105,13 +105,13 @@ function addRecipe($title, $abstract, $author)
     }
 }
 
-/** Get all recipes from one author (all recipes where enabled true)
+/** Get all recipes from one author (order by title)
  * @param string 
  * @return array|false
  */
 
 function getRecipesByAuthor($author)
-{ // Request By ID avec verif ----------------------------------------------------------------------
+{ 
     global $mysqlClient;
     $sqlQuery = 'SELECT * FROM recipes WHERE author = :author ORDER BY title';
     try {
@@ -126,8 +126,6 @@ function getRecipesByAuthor($author)
         return false;
     }
 }
-
-
 
 /** Get recipe by Title
  * @param string
@@ -217,10 +215,21 @@ function getPreviewRecipe($idRecipe)
     }
 }
 
-/** Jointure de table 
+/** Join table recipe and user
  * @param
  * @return array|false
  */
+function recipeJoinUser(){
+    global $mysqlClient ;
+    $sqlQuery = 'SELECT * FROM recipes INNER JOIN users ON recipes.author = users.email';
+    try {
+        $recipeStatement = $mysqlClient->prepare($sqlQuery);
+        $recipeStatement->execute();
+    $recipesJoin = $recipeStatement->fetchAll();
+    return $recipesJoin;
+    } catch (Exception $e) {
+    echo 'Exception : ', $e->getMessage();
+    return false;
+    }
+}
 
-//  global $mysqlClient;
-//  $sqlQuery = 

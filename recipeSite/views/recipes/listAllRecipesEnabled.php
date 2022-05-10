@@ -4,14 +4,17 @@
  * @param array|array
  * @return string
  */
-function displayListRecipes(array $recipesActiv)
+function displayListRecipes(array $recipesJoin)
 {
-    include_once('views/users/displayAuthor.php');
-    $usersAll =getAllUsers();
-    echo('Function display recipelist');
-    foreach ($recipesActiv as $recipe) {
+    // include_once('views/users/displayAuthor.php');
+    // $usersAll =getAllUsers();
+    // echo('Function display recipelist');
+    
+    echo '<div class="container-fluid px-5">';
+        
+    foreach ($recipesJoin as $recipe) {
         $dspRecipe = displayRecipe($recipe);
-        $dspEndRecipeAuthor = displayAuthor($recipe['author'], $usersAll);
+        $dspEndRecipeAuthor = displayAuthor($recipe['author'],$recipe);
 ?>
         <article>
             <?php echo $dspRecipe . $dspEndRecipeAuthor;
@@ -19,24 +22,28 @@ function displayListRecipes(array $recipesActiv)
         </article>
 <?php
     }
+    echo '</div>';
+    
 } 
 
-/** Display MY recipes detail and for recipes belong user logged buttons modif/errase
+/** Display user Logged recipes detail and for recipes belong user logged buttons modif/errase
  * @param array|array
  * @return string
  */
-function displayMyListRescipes(array $recipesActiv)
+function displayMyListRescipes(array $recipesJoin)
 {
-    foreach ($recipesActiv as $recipe) {
+    foreach ($recipesJoin as $recipe) {
         $dspRecipe = displayRecipe($recipe);
         ?>
         <article>
             <?php echo $dspRecipe;
             buttonOwnerUptateRemove($recipe);
+            
             ?>  
         </article>
 <?php
     }
+    backButton();
 }
 
 

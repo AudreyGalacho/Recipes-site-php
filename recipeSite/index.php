@@ -10,8 +10,12 @@ include_once('app/includeAll.php');
 <body class="d-flex flex-column min-vh-100">
     <?php include_once('html/body/header.php'); ?>
     <section>
+        
         <div class="container-fluid px-5">
+        
             <?php
+            $tableJointure= recipeJoinUser();
+            // var_dump($tableJointure[0]);
             router();
             ?>
 
