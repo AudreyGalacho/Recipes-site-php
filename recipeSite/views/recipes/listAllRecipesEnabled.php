@@ -24,7 +24,7 @@ function displayListRecipes(array $recipesJoin)
     }
     echo '</div>';
     
-} 
+}
 
 /** Display user Logged recipes detail and for recipes belong user logged buttons modif/errase
  * @param array|array
