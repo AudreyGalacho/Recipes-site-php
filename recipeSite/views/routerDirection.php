@@ -98,7 +98,6 @@ function switcher($route)
                     switch ($id) {
                         case 'update':
                             verifyUpdateRecipe($idPlus);
-                            // echo 'On veut stopper LA ';
                             break;
                         case 'add':
                             verifyAddRecipeAndForm();

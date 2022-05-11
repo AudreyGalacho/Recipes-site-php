@@ -84,7 +84,7 @@ function verifyDeleteRecipe($id)
             $recipe = getRecipeById($id);
             $authorID = $recipe['author'];
 
-            echo  $authorID, $id;
+            // echo  $authorID, $id;
 
             if ($_SESSION['userMail'] !== $authorID) {
                 echo 'Oh..Oh.. Vous n\'avez pas le droit de supprimer cette recette!!';
