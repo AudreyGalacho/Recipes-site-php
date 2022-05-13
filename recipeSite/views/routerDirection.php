@@ -82,7 +82,7 @@ function switcher($route)
                             displayListRecipes($recipeByAuthor);
                             break;
                         case 'one':
-                            // display one recipe order by title (full text) and commentry form
+                            // display one recipe by title (full text) and commentry form
                             $tableJoin = recipeJoinUser(); //jointure table
                             $recipeJoinGet = getRecipeJoin($idPlus, $tableJoin); //fetch id match
                             displayFullRecipe($recipeJoinGet);
