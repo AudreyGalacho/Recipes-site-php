@@ -1,37 +1,49 @@
 <?php
 
-/** Display button navigation bettewen recipe full display
+/** Display button of user owner recipes
  * @param array
- * @return 
+ * @return string
  */
 function buttonOwnerUptateRemove($recipe)
 {
     if ($recipe['author'] === $_SESSION['userMail']) {
-?>
-        <div class="ownerButton">
-                <a class="text-decoration-none" href="?recipes/form/update/<?php echo $recipe['recipe_id']; ?>">
+        $buttonOwener =
+            '<div class="ownerButton">
+                <a class="text-decoration-none" href="?recipes/form/update/'. $recipe['recipe_id'].'">
                     <input type="button" class="btn btn-outline-warning" value="Modifier">
                 </a>
-                <a class="text-decoration-none" href="?recipes/form/remove/<?php echo $recipe['recipe_id']; ?>">
+                <a class="text-decoration-none" href="?recipes/form/remove/'. $recipe['recipe_id']. '>">
                     <input type="button" class="btn btn-outline-danger" value="Effacer">
                 </a>
-        </div>
-    <?php
+            </div>';
+        return $buttonOwener;
     }
 }
 
 /** Display button return on main page
  * @param 
- * @return 
+ * @return string
  */
-function backButton() //Le bouton pour retourner à la page acceuil qui pourra servir de bouton juste retour un jour
-{
-    ?>
-        <a class="buttonBack text-decoration-none" href="http://localhost/recipeSite/?recipes/list/all">
+function backButton(){
+    $buttonBack = 
+        '<a class="buttonBack text-decoration-none" href="http://localhost/recipeSite/?recipes/list/all">
             <input type="button" class="btn btn-secondary" value="Retour" name="Retour">
-        </a>
-    <?php
+        </a>';
+    return $buttonBack;
 }
+/** Display button return on main page
+ * @param 
+ * @return string
+ */
+function logOutButton() //Le bouton pour retourner à la page acceuil qui pourra servir de bouton juste retour un jour
+{
+    $buttonLogOut = 
+    '<a class="text-decoration-none" href="http://localhost/recipeSite/?user/log/out">
+        <input type="button" class="btn btn-secondary" value="Déconnexion" name="Déconnexion">
+    </a>';
+    return $buttonLogOut;    
+}
+
 
 
 /** Display button navigation bettewen recipe full display

@@ -18,7 +18,7 @@ function displayListRecipes(array $recipesJoin)
 ?>
         <article>
             <?php echo $dspRecipe . $dspEndRecipeAuthor;
-            buttonOwnerUptateRemove($recipe); ?>
+            echo buttonOwnerUptateRemove($recipe); ?>
         </article>
 <?php
     }
@@ -36,9 +36,8 @@ function displayMyListRescipes(array $recipesJoin)
         $dspRecipe = displayRecipe($recipe);
         ?>
         <article>
-            <?php echo $dspRecipe;
-            buttonOwnerUptateRemove($recipe);
-            
+            <?php 
+            echo $dspRecipe . buttonOwnerUptateRemove($recipe);
             ?>  
         </article>
 <?php

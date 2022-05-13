@@ -19,7 +19,8 @@ function router()
  * @return string|string
  */
 function findRoute()
-{
+{   
+    // echo ' FIND ROAD ';
 
     $url = $_SERVER['REQUEST_URI'];
     // $url = 'http://localhost/recipeSite/?recipes/list/one/13';
@@ -71,17 +72,21 @@ function switcher($route)
                 case 'list':
                     switch ($id) {
                         case 'all':
+                            messageLog();
                             displayAllRecipes();
                             break;
                         case 'my_recipes':
+                            messageLog();
                             $myRecipies = getRecipesByAuthor($_SESSION['userMail']);
                             displayMyListRescipes($myRecipies);
                             break;
                         case 'author':
+                            messageLog();
                             $recipeByAuthor = getRecipesByAuthor($idPlus);
                             displayListRecipes($recipeByAuthor);
                             break;
                         case 'one':
+                            messageLog();
                             // display one recipe by title (full text) and commentry form
                             $tableJoin = recipeJoinUser(); //jointure table
                             $recipeJoinGet = getRecipeJoin($idPlus, $tableJoin); //fetch id match
@@ -97,12 +102,15 @@ function switcher($route)
                     include_once('views/recipes/crudFunctionsRecipe.php');
                     switch ($id) {
                         case 'update':
+                            messageLog();
                             verifyUpdateRecipe($idPlus);
                             break;
                         case 'add':
+                            messageLog();
                             verifyAddRecipeAndForm();
                             break;
                         case 'remove':
+                            messageLog();
                             verifyDeleteRecipe($idPlus);
                             break;
                         default:
@@ -145,6 +153,7 @@ function switcher($route)
                 case 'contact':
                     switch ($id) {
                         case 'form':
+                            messageLog();
                             // echo 'form contact switcher';
                             include('views/users/displayForms.php');
                             displayFormContact();
@@ -155,7 +164,7 @@ function switcher($route)
                     }
                     break;
                 default:
-                    echo 'contact défault';
+                    echo 'action défault';
                     break;
             }
             break;

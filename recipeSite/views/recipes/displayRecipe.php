@@ -39,7 +39,7 @@ function displayFullRecipe(array $recipe) // Fonction d'affichage d'une recette 
         ?>
         <div class="fullButtonRecipe">
             <?php
-            buttonOwnerUptateRemove($recipe) . backButton();
+             echo buttonOwnerUptateRemove($recipe) . backButton();
             ?>
         </div>
     </article>
