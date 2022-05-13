@@ -17,6 +17,7 @@
     include_once('html/recipes/errorMessages.php');
     include_once('views/recipes/displayButtons.php');
     include_once('views/users/displayAuthor.php');
+    include_once('repository/messages.php');
     
 
 

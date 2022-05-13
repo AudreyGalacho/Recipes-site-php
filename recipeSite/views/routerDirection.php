@@ -121,7 +121,7 @@ function switcher($route)
                             isUserLogged();
                             break;
                         case 'out':
-                            # code...
+                            userLogOut();
                             break;
                         default:
                             # code...

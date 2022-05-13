@@ -1,14 +1,14 @@
 <?php
 
-/** Get all recipes from one author (all recipes where enabled true)
- * @param string
+/** Get loggin
+ * @param 
  * @return string|false
  */
 
 function isUserLogged()
 {
     $postData = $_POST;
-    echo('Is user logged');
+    
     if (!isset($postData['email'])) {
         include_once('html/users/userLogIn.php');
     } else {
@@ -19,13 +19,19 @@ function isUserLogged()
         }
     }
     if (isset($_SESSION['userLogged'])) {
-    
-        $messageWelcome ='<p> Bonjour'. $_SESSION['userLogged'].' bienvenu!!!</p>';
-        // insertMessage($messageWelcome);
-        switcher(['recipes','list','all','']);
+        switcher(['recipes','list','all','']);  
     }
 }
 
+/** Get loggout
+ * @param 
+ * @return string|false
+ */
+function userLogOut(){
+    unset($_SESSION['userLogged']);
+    unset($_SESSION['userMail']);
+    switcher(['recipes','list','all','']);
+}
 
 /** Get details on user logged
  * @param string 

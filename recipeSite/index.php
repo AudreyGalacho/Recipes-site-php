@@ -12,8 +12,9 @@ include_once('app/includeAll.php');
     <section>
         
         <div class="container-fluid px-5">
-        
+            
             <?php
+            messageLog();
             $tableJointure= recipeJoinUser();
             // var_dump($tableJointure[0]);
             router();
