@@ -1,19 +1,13 @@
 <?php
 /** Display author in full name instead of mail adress
- * @param string|array
+ * @param array
  * @return string
  */
 
-function displayAuthor($recipeAuthor, $recipe) //Affichage de l'auteur en nom complet
-{
-    $user=getUser($recipeAuthor);
-        if ($recipeAuthor === $user['email']) {
-
-            // var_dump($recipe);
-
-            $authorRecipeFullName = $recipe['full_name'] . ' (' . $recipe['age'] . ' ans)';
-            $recipeAuthor = '<i><a class="text-decoration-none text-reset text-end" href="http://localhost/recipeSite/?recipes/list/author/'.$recipe['author'].'">' . $authorRecipeFullName . '</a></i>';
-            return $recipeAuthor;
-        }       
-    }
+function displayAuthor($recipe) //Affichage de l'auteur en nom complet
+{        
+    $authorRecipeFullName = $recipe['full_name'] . ' (' . $recipe['age'] . ' ans)';
+    $recipeAuthor = '<i><a class="text-decoration-none text-reset text-end" href="http://localhost/recipeSite/?recipes/list/author/'.$recipe['author'].'">' . $authorRecipeFullName . '</a></i>';
+    return $recipeAuthor;
+}
 ?>

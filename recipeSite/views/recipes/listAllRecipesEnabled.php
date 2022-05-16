@@ -14,7 +14,7 @@ function displayListRecipes(array $recipes)
         
     foreach ($recipes as $recipe) {
         $dspRecipe = displayRecipe($recipe);
-        $dspEndRecipeAuthor = displayAuthor($recipe['author'],$recipe);
+        $dspEndRecipeAuthor = displayAuthor($recipe);
 ?>
         <article>
             <?php echo $dspRecipe . $dspEndRecipeAuthor;
