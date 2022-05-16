@@ -12,7 +12,7 @@ function displayAuthor($recipeAuthor, $recipe) //Affichage de l'auteur en nom co
             // var_dump($recipe);
 
             $authorRecipeFullName = $recipe['full_name'] . ' (' . $recipe['age'] . ' ans)';
-            $recipeAuthor = '<i><a class="text-decoration-none text-reset text-end" href="http://localhost/recipeSite/?recipes/list/author/'.$recipe['email'].'">' . $authorRecipeFullName . '</a></i>';
+            $recipeAuthor = '<i><a class="text-decoration-none text-reset text-end" href="http://localhost/recipeSite/?recipes/list/author/'.$recipe['author'].'">' . $authorRecipeFullName . '</a></i>';
             return $recipeAuthor;
         }       
     }

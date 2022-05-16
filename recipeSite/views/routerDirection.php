@@ -77,12 +77,12 @@ function switcher($route)
                             break;
                         case 'my_recipes':
                             messageLog();
-                            $myRecipies = getRecipesByAuthor($_SESSION['userMail']);
+                            $myRecipies = recipeByAuthorJoinUser($_SESSION['userMail']);
                             displayMyListRescipes($myRecipies);
                             break;
                         case 'author':
                             messageLog();
-                            $recipeByAuthor = getRecipesByAuthor($idPlus);
+                            $recipeByAuthor = recipeByAuthorJoinUser($idPlus);
                             displayListRecipes($recipeByAuthor);
                             break;
                         case 'one':

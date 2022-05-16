@@ -1,8 +1,6 @@
 <?php
 function displayAllRecipes()
 {
-    // echo 'display all recipes';
-    // $usersAll = getAllUsers();
     $recipesAll = recipeJoinUser();
     displayListRecipes($recipesAll);
 }

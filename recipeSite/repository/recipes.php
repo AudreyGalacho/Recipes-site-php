@@ -1,24 +1,4 @@
 <?php
-
-/** Get all recipes from table 
- * @param 
- * @return array|false
- */
-// On récupère tout le contenu de la table recipes ordonée
-// function getAllRecipesOrdered()
-// {
-//     global $mysqlClient;
-//     $sqlQuery = 'SELECT * FROM recipes ORDER BY title';
-//     try {
-//         $recipesStatement = $mysqlClient->prepare($sqlQuery);
-//         $recipesStatement->execute();
-//         $recipesActiv = $recipesStatement->fetchAll();
-//         return $recipesActiv;
-//     } catch (Exception $e) {
-//         echo 'Exception : ', $e->getMessage();
-//     }
-// }
-
 /** Get one recipe from is id
  * @param string 
  * @return array|false
@@ -26,7 +6,9 @@
 function getRecipeById($idRecipe)
 { // Request recipe By ID  ----------------------------------------------------------------------
     global $mysqlClient;
-    $searchRecipe = 'SELECT * FROM recipes WHERE recipe_id = :id';
+    $searchRecipe = 'SELECT recipes.recipe_id, recipes.title, recipes.abstract, recipes.author, users.full_name, users.age 
+                        FROM recipes INNER JOIN users ON users.email = recipes.author 
+                        WHERE recipe_id = :id';
     try {
         $recipesStatement = $mysqlClient->prepare($searchRecipe);
         $recipesStatement->execute([
@@ -105,28 +87,6 @@ function addRecipe($title, $abstract, $author)
     }
 }
 
-/** Get all recipes from one author (order by title)
- * @param string 
- * @return array|false
- */
-
-function getRecipesByAuthor($author)
-{ 
-    global $mysqlClient;
-    $sqlQuery = 'SELECT * FROM recipes WHERE author = :author ORDER BY title';
-    try {
-        $recipesStatement = $mysqlClient->prepare($sqlQuery);
-        $recipesStatement->execute([
-            'author' => $author,
-        ]);
-        $recipesByAuthor = $recipesStatement->fetchAll();
-        return $recipesByAuthor;
-    } catch (Exception $e) {
-        echo 'Exception : ', $e->getMessage();
-        return false;
-    }
-}
-
 /** Get recipe by Title
  * @param string
  * @return array|false
@@ -134,7 +94,9 @@ function getRecipesByAuthor($author)
 function getRecipeByTitle($title)
 {
     global $mysqlClient;
-    $sqlQuery = 'SELECT * FROM recipes WHERE title = :title';
+    $sqlQuery = 'SELECT recipes.recipe_id, recipes.title, recipes.abstract, recipes.author, users.full_name, users.age 
+                    FROM recipes INNER JOIN users ON users.email = recipes.author 
+                    WHERE title = :title';
     try {
         $recipeStatement = $mysqlClient->prepare($sqlQuery);
         $recipeStatement->execute([
@@ -215,13 +177,15 @@ function getPreviewRecipe($idRecipe)
     }
 }
 
-/** Join table recipe and user
+/** Join table recipe and user and order by title
  * @param
  * @return array|false
  */
 function recipeJoinUser(){
     global $mysqlClient ;
-    $sqlQuery = 'SELECT * FROM recipes INNER JOIN users ON recipes.author = users.email';
+    $sqlQuery = 'SELECT recipes.recipe_id, recipes.title, recipes.abstract, recipes.author, users.full_name, users.age 
+                    FROM recipes INNER JOIN users ON users.email = recipes.author 
+                        ORDER BY title';
     try {
         $recipeStatement = $mysqlClient->prepare($sqlQuery);
         $recipeStatement->execute();
@@ -233,3 +197,26 @@ function recipeJoinUser(){
     }
 }
 
+/** Get all recipes from one author (order by title) with join
+ * @param string 
+ * @return array|false
+ */
+
+function recipeByAuthorJoinUser($author){
+    global $mysqlClient ;
+    $sqlQuery = 'SELECT recipes.recipe_id, recipes.title, recipes.abstract, recipes.author, users.full_name, users.age 
+                    FROM recipes LEFT OUTER JOIN users ON users.email = recipes.author 
+                        WHERE recipes.author = :author
+                        ORDER BY title';
+    try {
+        $recipeStatement = $mysqlClient->prepare($sqlQuery);
+        $recipeStatement->execute([
+            'author' => $author,
+        ]);
+    $recipesJoin = $recipeStatement->fetchAll();
+    return $recipesJoin;
+    } catch (Exception $e) {
+    echo 'Exception : ', $e->getMessage();
+    return false;
+    }
+}

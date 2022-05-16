@@ -4,7 +4,7 @@
  * @param array|array
  * @return string
  */
-function displayListRecipes(array $recipesJoin)
+function displayListRecipes(array $recipes)
 {
     // include_once('views/users/displayAuthor.php');
     // $usersAll =getAllUsers();
@@ -12,7 +12,7 @@ function displayListRecipes(array $recipesJoin)
     
     echo '<div class="container-fluid px-5">';
         
-    foreach ($recipesJoin as $recipe) {
+    foreach ($recipes as $recipe) {
         $dspRecipe = displayRecipe($recipe);
         $dspEndRecipeAuthor = displayAuthor($recipe['author'],$recipe);
 ?>
@@ -30,9 +30,9 @@ function displayListRecipes(array $recipesJoin)
  * @param array|array
  * @return string
  */
-function displayMyListRescipes(array $recipesJoin)
+function displayMyListRescipes(array $recipes)
 {
-    foreach ($recipesJoin as $recipe) {
+    foreach ($recipes as $recipe) {
         $dspRecipe = displayRecipe($recipe);
         ?>
         <article>
