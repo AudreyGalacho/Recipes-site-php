@@ -38,7 +38,7 @@ function backButton(){
 function logOutButton() //Le bouton pour retourner à la page acceuil qui pourra servir de bouton juste retour un jour
 {
     $buttonLogOut = 
-    '<a class="text-decoration-none" href="http://localhost/recipeSite/?user/log/out">
+    '<a class="log-out text-decoration-none" href="http://localhost/recipeSite/?user/log/out">
         <input type="button" class="btn btn-secondary" value="Déconnexion" name="Déconnexion">
     </a>';
     return $buttonLogOut;    
