@@ -23,6 +23,6 @@
             </div>
         </fieldset>
         </br>
-        <button type="submit" class="btn btn-primary">Envoyer</button>
+        <button type="submit" class="btn btn-primary">Envoyer</button> <?php echo backButton(); ?>
     </form>
 </div>

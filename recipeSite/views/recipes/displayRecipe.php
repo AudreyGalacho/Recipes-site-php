@@ -19,7 +19,7 @@ function displayRecipe(array $recipe): string // Fonction d'affichage d'une rece
 function displayFullRecipe(array $recipe) // Fonction d'affichage d'une recette avec commentaires
 {
     // echo '  Function display full recipe!!!   ';
-    
+
     $idRecipe = $recipe['recipe_id'];
     // var_dump($recipe);
 
@@ -32,17 +32,18 @@ function displayFullRecipe(array $recipe) // Fonction d'affichage d'une recette 
     $recipe_content .= $dspEndRecipeAuthor . '</br>';
 
 ?>
-    <article>
+    <div class="container" <article>
         <?php
         navigationRecipes($idRecipe);
         echo $recipe_content;
         ?>
         <div class="fullButtonRecipe">
             <?php
-             echo buttonOwnerUptateRemove($recipe) . backButton();
+            echo buttonOwnerUptateRemove($recipe) . backButton();
             ?>
         </div>
-    </article>
+        </article>
+    </div>
 <?php
     exit;
     return;

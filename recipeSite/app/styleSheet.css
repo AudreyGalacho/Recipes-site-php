@@ -3,23 +3,33 @@ body {
     /* font-family: "Goudy Bookletter 1911", sans-serif; */
     color: black;
 }
-
+nav {
+    background-color: #d4d6e257;
+    border-bottom: solid 2px #dcdcdc;
+}
 section.container {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     padding: 0px;
+    max-width: 90%;
 }
- div.container-fluid {
+div.container{
+    width: 100%;
+    /* margin-right: auto;
+    margin-left: auto; */
+    padding: 0px;
+}
+div.container-fluid {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     align-content: stretch;
     width: 100%;
-    margin-right: auto;
+    /* margin-right: auto; */
     margin-top: 10px;
-    margin-left: auto;
+    /* margin-left: auto; */
     padding: 0px;
  }
 article {
@@ -32,12 +42,19 @@ article {
     background-color: rgba(195, 195, 195, 0.246);
     flex-direction: column;
 }
+article.list {
+    display: flex;
+    flex-direction: column;
+}
+
 aside {
     align-self: flex-end;
     padding: 10px;
-    background-color: #a0a5c057;
-    border-radius: 20px;
+    background-color: #d4d6e257;
+    border-radius: 0px 0px 20px 20px;
     margin-right: 5px;
+    border: solid 2px #dcdcdc;
+    border-top: 0px;
 }
 textarea.full-text {
     width: 100%;
@@ -49,7 +66,6 @@ textarea.full-text {
 }
 
 div.full-text {
-    padding: 1%;
     width: 100%;
 }
 
@@ -61,6 +77,7 @@ p {
 p.hide-text {
     overflow: hidden;
     white-space: nowrap;
+    flex-grow: inherit;
 }
 
 /* BUTTONS et LIEN */
@@ -101,9 +118,9 @@ div.fullButtonRecipe {
 }
 
 div.navigationButton {
-    padding: 0 1%;
     display: flex;
     justify-content: space-between;
+    margin-top: 10px;
 }
 
 p.debug-display {
@@ -115,7 +132,7 @@ p.debug-display {
     text-align: center;
     border-radius: 15px;
 }
-.alert{
+.alert {
     flex-grow: 1;
     width: max-content;
     align-self:flex-start;

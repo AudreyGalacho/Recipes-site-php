@@ -17,7 +17,7 @@
             </label>
             <textarea class="form-control" placeholder="Exprimez vous" required="required" id="message" name="message"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Envoyer</button>
+        <button type="submit" class="btn btn-primary">Envoyer</button> <?php echo backButton(); ?>
     </form>
 
 </div>

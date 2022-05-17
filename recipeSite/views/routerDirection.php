@@ -19,7 +19,7 @@ function router()
  * @return string|string
  */
 function findRoute()
-{   
+{
     // echo ' FIND ROAD ';
 
     $url = $_SERVER['REQUEST_URI'];
@@ -114,7 +114,7 @@ function switcher($route)
                     }
                     break;
                 default:
-                break;
+                    break;
             }
             break;
         case 'user':
@@ -151,8 +151,7 @@ function switcher($route)
                         case 'form':
                             messageLog();
                             // echo 'form contact switcher';
-                            include('views/users/displayForms.php');
-                            displayFormContact();
+                            include_once('html/users/contactForm.php');
                             break;
                         default:
                             echo 'contact défault';
@@ -168,4 +167,3 @@ function switcher($route)
             break;
     }
 }
-
