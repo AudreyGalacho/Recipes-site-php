@@ -10,7 +10,7 @@ function displayListRecipes(array $recipes)
     // $usersAll =getAllUsers();
     // echo('Function display recipelist');
     
-    echo '<div class="container-fluid px-5">';
+    echo '<div class="container-fluid">';
         
     foreach ($recipes as $recipe) {
         $dspRecipe = displayRecipe($recipe);

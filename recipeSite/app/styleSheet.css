@@ -4,19 +4,28 @@ body {
     color: black;
 }
 
-div.container-fluid {
+section.container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 0px;
+}
+ div.container-fluid {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-content: stretch;
-    align-items: stretch;
     justify-content: center;
-}
-
+    align-content: stretch;
+    width: 100%;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-left: auto;
+    padding: 0px;
+ }
 article {
     flex-grow: 1;
     display: flex;
-    margin: 10px;
+    margin: 5px;
     padding: 10px;
     width: 30%;
     border-radius: 15px;
@@ -24,7 +33,11 @@ article {
     flex-direction: column;
 }
 aside {
-    justify-content: flex-end;
+    align-self: flex-end;
+    padding: 10px;
+    background-color: #a0a5c057;
+    border-radius: 20px;
+    margin-right: 5px;
 }
 textarea.full-text {
     width: 100%;

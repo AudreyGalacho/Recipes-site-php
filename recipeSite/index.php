@@ -9,16 +9,11 @@ include_once('app/includeAll.php');
 
 <body class="d-flex flex-column min-vh-100">
     <?php include_once('html/body/header.php'); ?>
-    <section>
-        
-        <div class="container-fluid px-5">
-            
-            <?php          
-            $tableJointure= recipeJoinUser();
-            router();
-            ?>
-
-        </div>
+    <section class="container">
+        <?php
+        $tableJointure = recipeJoinUser();
+        router();
+        ?>
     </section>
     <?php include_once('html/body/footer.php'); ?>
 </body>
