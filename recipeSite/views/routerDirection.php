@@ -60,12 +60,8 @@ function switcher($route)
     $action = $route[1];
     $id = $route[2];
     $idPlus = $route[3];
-    // var_dump($route);
-?>
-    </br>
-<?php
+
     // echo ' SWITCHER ';
-    // var_dump($route);
     switch ($destination) {
         case 'recipes':
             switch ($action) {

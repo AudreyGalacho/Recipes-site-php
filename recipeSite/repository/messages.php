@@ -5,9 +5,9 @@
          $messageWelcome ='';
          return $messageWelcome;
      } else {
-        $messageWelcome = '<p> Bonjour '. $_SESSION['userLogged'].' bienvenu !!!</p>';
+        $messageWelcome = '<aside class="logMessage"> Bonjour '. $_SESSION['userLogged'].' bienvenu !!!';
         echo $messageWelcome ;
-        echo logOutButton();
+        echo logOutButton() . '</aside>';
         return;
      }
  }

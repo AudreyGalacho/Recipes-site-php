@@ -13,9 +13,7 @@ include_once('app/includeAll.php');
         
         <div class="container-fluid px-5">
             
-            <?php
-            // echo '<p> début afficheage page </br>'; 
-            
+            <?php          
             $tableJointure= recipeJoinUser();
             router();
             ?>
