@@ -1,4 +1,4 @@
-<article>
+<aside class="logMessage">
     <p>
         Vous devez être enregistré pour accéder aux recettes!
     </p>
@@ -11,4 +11,4 @@
 
         <input type="submit" value="envoyer">
     </form>
-</article>
+</aside>
