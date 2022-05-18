@@ -74,6 +74,8 @@ function switcher($route)
                                 return;
                             }
                             $myRecipies = recipeByAuthorJoinUser($_SESSION['userMail']);
+                            messageLog();
+                            echo backButton();
                             displayMyListRescipes($myRecipies);
                             break;
                         case 'author':
