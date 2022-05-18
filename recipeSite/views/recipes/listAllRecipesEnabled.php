@@ -18,6 +18,7 @@ function displayListRecipes(array $recipes)
 ?>
         <article class="list">
             <?php echo $dspRecipe . $dspEndRecipeAuthor;
+        
             echo buttonOwnerUptateRemove($recipe); ?>
         </article>
     <?php
@@ -32,8 +33,13 @@ function displayListRecipes(array $recipes)
 function displayMyListRescipes(array $recipes)
 
 {
-    echo backButton(). '<div class="container-fluid">';
-
+    if (!isset($_SESSION['userMail'])) {
+        errAcces();
+        echo backButton();
+        return;
+    }
+    
+    echo '<div class="container-fluid">';
 
     foreach ($recipes as $recipe) {
         $dspRecipe = displayRecipe($recipe);

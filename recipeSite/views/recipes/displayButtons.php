@@ -6,6 +6,9 @@
  */
 function buttonOwnerUptateRemove($recipe)
 {
+    if (!isset($_SESSION['userMail'])) {
+        return;
+    }
     if ($recipe['author'] === $_SESSION['userMail']) {
         $buttonOwener =
             '<div class="ownerButton">

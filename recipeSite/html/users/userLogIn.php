@@ -1,6 +1,6 @@
 <aside class="logMessage">
     <p>
-        Vous devez être enregistré pour accéder aux recettes!
+        Connexion :
     </p>
     <form method="POST" action="">
         <label for="email">Email</label>

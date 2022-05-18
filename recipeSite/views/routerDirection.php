@@ -7,12 +7,7 @@
 function router()
 {
     // echo ' ROOOUUUTIIINNNG ' ;
-
-    if (!isset($_SESSION['userLogged'])) {
-        isUserLogged();
-    } else {
-        findRoute();
-    }
+    findRoute();
 }
 /** Url decomposition to router
  * @param string
@@ -72,7 +67,12 @@ function switcher($route)
                             displayAllRecipes();
                             break;
                         case 'my_recipes':
-                            messageLog();
+                            if (!isset($_SESSION['userMail'])) {
+                                messageLog();
+                                errAcces();
+                                echo backButton();
+                                return;
+                            }
                             $myRecipies = recipeByAuthorJoinUser($_SESSION['userMail']);
                             displayMyListRescipes($myRecipies);
                             break;
@@ -98,10 +98,15 @@ function switcher($route)
                     include_once('views/recipes/crudFunctionsRecipe.php');
                     switch ($id) {
                         case 'update':
-                            
                             verifyUpdateRecipe($idPlus);
                             break;
                         case 'add':
+                            if (!isset($_SESSION['userMail'])) {
+                                messageLog();
+                                errAcces();
+                                echo backButton();
+                                return;
+                            }
                             verifyAddRecipeAndForm();
                             break;
                         case 'remove':

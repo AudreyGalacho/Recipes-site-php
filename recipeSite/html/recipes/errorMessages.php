@@ -18,5 +18,12 @@ function errMessageSameAbstract()
 <?php
 }
 
-
+function errAcces()
+{
+?>
+  <div class="alert alert-warning position-absolute" role="alert">
+    <p>Vous devez être enregistré pour accèder à cette partie</p>
+  </div>
+<?php
+}
 ?>
