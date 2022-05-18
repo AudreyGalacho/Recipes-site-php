@@ -8,21 +8,21 @@
 function isUserLogged()
 {
     if (!isset($_POST['email'])) {
-        include_once('html/users/userLogIn.php');
-        return;
+        $isUserlog = false;
+        return $isUserlog;
     } else {
         $isUserKnown = getUser($_POST['email']);
 
         if ($isUserKnown == false) {
             echo '<p class="debug-display"> Utilisateur inconnu </p>';
-            include_once('html/users/userLogIn.php');
-            return;
+            $isUserlog = false;
+            return $isUserlog;
         }
         if ($isUserKnown['email'] === $_POST['email']) {
             $_SESSION['userLogged'] = $isUserKnown['full_name'];
             $_SESSION['userMail'] = $isUserKnown['email'];
-            switcher(['recipes', 'list', 'all', '']);
-            return;
+            $isUserlog = true;
+            return $isUserlog;
         } 
     }
 }
@@ -34,13 +34,15 @@ function isUserLogged()
 function userLogOut()
 {
     // echo ' LOGGIN OUT ';
-    unset($_COOKIE['key']);
-    setcookie('key', '', time() - 3600, '/'); // empty value and old timestamp
-    session_destroy();
+    
     unset($_SESSION['userLogged']);
     unset($_SESSION['userMail']);
-    router();
+    unset($_COOKIE['key']);
+    setcookie('key', '', time() - 3600, '/'); // empty value and old timestamp
+    switcher(['recipes', 'list', 'all', '']);
     return;
+
+ 
 }
 
 /** Get details on user logged
