@@ -72,8 +72,23 @@ div.full-text {
 p {
     text-overflow: ellipsis;
 }
+/**************************************** Zone de LOG *********************************************/
+aside.logMessage{
+    display: flex;
+    flex-direction: column;
+}
+form.log{
+    display: flex;
+    flex-direction: column;
+}
+aside h5{
+    margin:0px;
+}
+aside label{
+    margin:0px;
+}
 
-/* p for mozaic recipe, abstract hiden */
+/**************************************** p for mozaic recipe, abstract hiden */
 p.hide-text {
     overflow: hidden;
     white-space: nowrap;
