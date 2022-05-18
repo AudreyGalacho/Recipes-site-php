@@ -139,4 +139,10 @@ p.debug-display {
     flex-grow: 1;
     width: max-content;
     align-self:flex-start;
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    top: 10%;
+    width: 30%;
+    transform: translate(-50%, -50%);
 }

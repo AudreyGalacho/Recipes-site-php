@@ -35,7 +35,7 @@ function removeRecipesById($id)
         $suppRecipe->execute([
             'id' => $id,
         ]);
-        echo 'RECIPE DELETED ';
+        // echo 'RECIPE DELETED ';
     } catch (Exception $e) {
         echo 'Exception : ', $e->getMessage();
     }

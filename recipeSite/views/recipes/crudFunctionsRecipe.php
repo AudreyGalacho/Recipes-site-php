@@ -8,6 +8,7 @@ function verifyAddRecipeAndForm()
 {
 
     if (!isset($_POST['abstract']) || !isset($_POST['title'])) {
+        messageLog();
         include('html/recipes/addRecipeForm.php');
         backButton();
         return;
@@ -19,6 +20,7 @@ function verifyAddRecipeAndForm()
         // Verif si recette ok
         $resultCheck = checkRecipe($recipe);
         if ($resultCheck == false) {
+            messageLog();
             include('html/recipes/addRecipeForm.php');
             backButton();
         }
@@ -26,7 +28,7 @@ function verifyAddRecipeAndForm()
             //requete ajout dans base
             addRecipe($titleNew, $abstracNew, $author);
 ?>
-            <div class="alert alert-success" role="alert">
+            <div class="alert alert-success position-absolute" role="alert">
                 Recette Ajoutée!
             </div>
     <?php
@@ -43,8 +45,6 @@ function verifyDeleteRecipe($id)
 {
     include_once('repository/recipes.php');
     $recipe = getRecipeById($id);
-
-    ?></br><?php
     // var_dump($recipe['recipe_id']);
     $authorID = $recipe['author'];
 
@@ -56,14 +56,15 @@ function verifyDeleteRecipe($id)
     if (isset($_POST['id'])) {
         deleteConfirm();
         ?>
-        <div class="alert alert-success" role="alert">
+        <div class="alert alert-success position-absolute" role="alert">
             Recette supprimée!
         </div>
         <?php
         switcher(['recipes', 'list', 'all', '']);
         return;
     } else {
-        // echo '</br>ON VA DELETE';
+        // echo 'ON VA DELETE';
+        messageLog();
         $id = $recipe['recipe_id'];
         // affichage du recap de la recette
         $title = $recipe['title'];
@@ -118,6 +119,7 @@ function verifyUpdateRecipe($id)
         return;
     }
     if (!isset($_POST['abstract']) || !isset($_POST['title'])) {
+        messageLog();
         include('html/recipes/modifRecipeForm.php');
         backButton();
         return;
@@ -137,7 +139,7 @@ function verifyUpdateRecipe($id)
             //requete ajout dans base
             updateRecipesById($titleNew, $abstracNew, $id);
             ?>
-            <div class="alert alert-success d-flex align-items-center" role="alert">
+            <div class="alert alert-success position-absolute d-flex align-items-center" role="alert">
             <p>Recette modifiée avec succès</p>
             </div>
             <?php

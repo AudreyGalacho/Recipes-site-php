@@ -98,15 +98,13 @@ function switcher($route)
                     include_once('views/recipes/crudFunctionsRecipe.php');
                     switch ($id) {
                         case 'update':
-                            messageLog();
+                            
                             verifyUpdateRecipe($idPlus);
                             break;
                         case 'add':
-                            messageLog();
                             verifyAddRecipeAndForm();
                             break;
                         case 'remove':
-                            messageLog();
                             verifyDeleteRecipe($idPlus);
                             break;
                         default:

@@ -29,10 +29,11 @@ function displayFullRecipe(array $recipe) // Fonction d'affichage d'une recette 
     $recipe_content .= '<p style="white-space:pre-wrap" class= "full-text card-text text-justify" readonly>' . $recipe['abstract'] . '</p>';
 
     $dspEndRecipeAuthor = displayAuthor($recipe);
-    $recipe_content .= $dspEndRecipeAuthor . '</br>';
+    $recipe_content .= $dspEndRecipeAuthor;
 
 ?>
-    <div class="container" <article>
+    <div class="container" 
+    <article>
         <?php
         navigationRecipes($idRecipe);
         echo $recipe_content;
