@@ -45,7 +45,7 @@ function findRoute()
         switcher($route);
         return;
     } else {
-        echo (' Other Road ');
+        // echo ' Other Road ';
         $route = ['recipes', 'list', 'all', ''];
         switcher($route);
     }
@@ -159,7 +159,7 @@ function switcher($route)
                     }
                     break;
                 default:
-                    echo 'action défault';
+                    // echo 'action défault';
                     break;
             }
             break;
