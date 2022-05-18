@@ -1,7 +1,7 @@
 <div class="container">
     <h1>Contactez nous</h1>
 
-    <form action="contactSubmit.php" method="POST">
+    <form action="" method="POST">
         <div class="mb-3">
             <label for="email" class="form-label">
                 Email
