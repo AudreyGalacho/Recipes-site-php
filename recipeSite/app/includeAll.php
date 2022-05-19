@@ -16,7 +16,7 @@
     include_once('views/recipes/displayListRecipes.php');
     include_once('views/recipes/displayButtons.php');
     include_once('views/recipes/displayAuthor.php');
-    include_once('control/messages.php');
+    include_once('controller/messages.php');
     
 
 

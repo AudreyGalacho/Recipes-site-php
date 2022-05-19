@@ -97,8 +97,8 @@ function switcher($route)
                     }
                     break;
                 case 'form':
-                    include_once('control/crudFunctionsRecipe.php');
-                    include_once('control/verifForms.php');
+                    include_once('controller/crudFunctionsRecipe.php');
+                    include_once('controller/verifForms.php');
                     switch ($id) {
                         case 'update':
                             verifyUpdateRecipe($idPlus);

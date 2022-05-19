@@ -6,7 +6,7 @@
             <label for="email" class="form-label">
                 Email
             </label>
-            <input type="email" class="form-control" id="email" required="required" name="email" aria-describedby="email-help">
+            <input type="email" class="form-controller" id="email" required="required" name="email" aria-describedby="email-help">
             <div id="email-help" class="form-text">
                 Nous ne revendrons pas votre email.
             </div>
@@ -15,7 +15,7 @@
             <label for="message" class="form-label">
                 Votre message
             </label>
-            <textarea class="form-control" placeholder="Exprimez vous" required="required" id="message" name="message"></textarea>
+            <textarea class="form-controller" placeholder="Exprimez vous" required="required" id="message" name="message"></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Envoyer</button> <?php echo backButton(); ?>
     </form>

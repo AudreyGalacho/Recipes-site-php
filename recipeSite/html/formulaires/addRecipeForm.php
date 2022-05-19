@@ -11,13 +11,13 @@
             <legend>La recette</legend>
 
             <label for="title" class="form-label">Titre</label>
-            <input type="text" class="form-control" id="title" name="title" required="required">
+            <input type="text" class="form-controller" id="title" name="title" required="required">
             <div class="invalid-feedback">
                 Il faut un titre a cette recette.
             </div>
 
             <label for="abstract" class="form-label">Recette</label>
-            <textarea class="form-control" rows="5" placeholder="Détails de votre recette" id="abstract" name="abstract" required="required"></textarea>
+            <textarea class="form-controller" rows="5" placeholder="Détails de votre recette" id="abstract" name="abstract" required="required"></textarea>
             <div class="invalid-feedback">
                 Il faut une description a cette recette.
             </div>
