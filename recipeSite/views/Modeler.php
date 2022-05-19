@@ -5,18 +5,6 @@ function displayAllRecipes()
     displayListRecipes($recipesAll);
 }
 
-function displayFormLog()
-{
-    // echo 'form LOG';
-    $usersAll = getAllUsers();
-    isUserLogged($_POST, $usersAll);
-}
-
-function routerDefault()
-{
-    $usersAll = getAllUsers();
-    isUserLogged($_POST, $usersAll);
-}
 /** Get the recipe join from recipe id of database table 
  * @param string|array
  * @return array|false

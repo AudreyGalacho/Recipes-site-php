@@ -6,9 +6,6 @@
  */
 function displayListRecipes(array $recipes)
 {
-    // include_once('views/users/displayAuthor.php');
-    // $usersAll =getAllUsers();
-    // echo('Function display recipelist');
 
     echo '<div class="container-fluid">';
 

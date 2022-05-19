@@ -97,7 +97,8 @@ function switcher($route)
                     }
                     break;
                 case 'form':
-                    include_once('views/recipes/crudFunctionsRecipe.php');
+                    include_once('control/crudFunctionsRecipe.php');
+                    include_once('control/verifForms.php');
                     switch ($id) {
                         case 'update':
                             verifyUpdateRecipe($idPlus);
@@ -156,7 +157,7 @@ function switcher($route)
                         case 'form':
                             messageLog();
                             // echo 'form contact switcher';
-                            include_once('html/users/contactForm.php');
+                            include_once('html/formulaires/contactForm.php');
                             break;
                         default:
                             echo 'contact défault';

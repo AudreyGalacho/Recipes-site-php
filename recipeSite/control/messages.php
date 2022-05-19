@@ -12,7 +12,7 @@ function messageLog()
     isUserLogged(); //on exe pour savoir s'il y a eu une entree au log
     // var_dump(isUserLogged());
     if (isUserLogged() == false)  {
-        $messageWelcome = include('html/users/userLogIn.php');
+        $messageWelcome = include('html/windows/userLogIn.php');
         return $messageWelcome;
     }
 
@@ -23,3 +23,33 @@ function messageLog()
     return;
     }
 }
+
+
+
+function errMessageSameTitle()
+{
+?>
+  <div class="alert alert-warning position-absolute" role="alert">
+    Une recette a déjà le même titre!!!
+  </div>
+<?php
+}
+
+function errMessageSameAbstract()
+{
+?>
+  <div class="alert alert-warning position-absolute" role="alert">
+    Une recette a déjà le même contenu!!!
+  </div>
+<?php
+}
+
+function errAcces()
+{
+?>
+  <div class="alert alert-warning position-absolute" role="alert">
+    <p>Vous devez être enregistré pour accèder à cette partie</p>
+  </div>
+<?php
+}
+?>

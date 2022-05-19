@@ -9,7 +9,7 @@ function verifyAddRecipeAndForm()
 
     if (!isset($_POST['abstract']) || !isset($_POST['title'])) {
         messageLog();
-        include('html/recipes/addRecipeForm.php');
+        include('html/formulaires/addRecipeForm.php');
         backButton();
         return;
     } else {
@@ -21,7 +21,7 @@ function verifyAddRecipeAndForm()
         $resultCheck = checkRecipe($recipe);
         if ($resultCheck == false) {
             messageLog();
-            include('html/recipes/addRecipeForm.php');
+            include('html/formulaires/addRecipeForm.php');
             backButton();
         }
         if ($resultCheck == true) {
@@ -43,7 +43,7 @@ function verifyAddRecipeAndForm()
  */
 function verifyDeleteRecipe($id)
 {
-    include_once('repository/recipes.php');
+
     $recipe = getRecipeById($id);
     // var_dump($recipe['recipe_id']);
     $authorID = $recipe['author'];
@@ -69,7 +69,7 @@ function verifyDeleteRecipe($id)
         // affichage du recap de la recette
         $title = $recipe['title'];
         $abstract = $recipe['abstract'];
-        include('html/recipes/deleteForm.php');    
+        include('html/formulaires/deleteForm.php');    
     }
 }
 
@@ -120,7 +120,7 @@ function verifyUpdateRecipe($id)
     }
     if (!isset($_POST['abstract']) || !isset($_POST['title'])) {
         messageLog();
-        include('html/recipes/modifRecipeForm.php');
+        include('html/formulaires/modifRecipeForm.php');
         backButton();
         return;
     } else {
@@ -132,7 +132,7 @@ function verifyUpdateRecipe($id)
         // Verif si recette ok
         $verifEmpty = checkEmptyRecipe($title, $abstract);
         if ($verifEmpty == true) {
-            include('html/recipes/modifRecipeForm.php');
+            include('html/formulaires/modifRecipeForm.php');
             backButton();
             return;
         } else {
