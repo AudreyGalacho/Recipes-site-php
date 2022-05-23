@@ -37,3 +37,88 @@ Pour répondre à cette demande, on va avoir besoin de 5 fichiers, suivant cette
     |-- view/
         |-- recipe.php
 ```
+
+### index.php
+```html
+<!doctype>
+<html>
+    <head>...</head>
+    <body>
+        <header>...</header>
+        <article>
+            <?php 
+                require('router.php');
+                doRouting(); 
+            ?>
+        </article>
+        <footer>...</footer>
+    </body>
+</html>
+```
+
+### router.php
+```php
+function doRouting()
+{
+    // On inclut le controller
+    require('controller/'.$_GET['controller'].'.php');
+    // Et on lance la bonne action
+    $_GET['action']();
+}
+```
+
+### controller/recipe.php
+```php
+function edit()
+{
+    // On récupère l'enregistrement, c'est le Model qui fait ça
+    require('model/recipe.php');
+    $recipe = getRecipe($_GET['id']);
+
+    // Si on a des données dans le $_POST,
+    // c'est qu'on a essayé de valider un formulaire
+    if (count($_POST)) {
+        // vérifications, affectations
+        $recipe['nom'] = $_POST['nom'];
+        // sauvegarde, dans une fonction du Model
+        save($recipe);
+    }
+    
+    // On affiche le formulaire
+    // En pré-remplissant les informations
+    $view = [
+        'recipe' => $recipe
+    ];
+    require('view/recipe/edit.php');
+}
+```
+
+### model/recipe.php
+```php
+function getRecipe(int $id): array
+{
+    // Requête de récupération ici
+    return $recipe;
+}
+
+function save(array $recipe): bool
+{
+    // Requête d'update
+    // return true si pas d'erreur, false sinon
+}
+```
+
+### view/recipe.php
+```html
+<form action="/index.php?controller=recipe&action=edit&id=<?php echo $recipe['id']; ?>" method="post">
+    <label for="nom">
+        <input type="text" name="nom" id="nom" />
+    </label>
+    <label for="description"></label>
+    <textarea name="description" id="description" cols="30" rows="10"></textarea>
+    
+    <button type="submit">Enregistrer</button>
+</form>
+```
+
+
