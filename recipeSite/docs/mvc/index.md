@@ -120,5 +120,9 @@ function save(array $recipe): bool
     <button type="submit">Enregistrer</button>
 </form>
 ```
-
+## Extensibilité
+ * Contrôler que l'utilisateur a bien les droits de modification
+ * Vérifier les données du formulaire
+ * Transmettre à la vue des éventuels messages d'erreur ou de confirmation
+ * Afficher les éventuels messages
 
