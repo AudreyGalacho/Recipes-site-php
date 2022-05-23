@@ -30,7 +30,7 @@ Pour répondre à cette demande, on va avoir besoin de 5 fichiers, suivant cette
     .
     |-- index.php
     |-- router.php
-    |-- :open_file_folder: controller/
+    |-- controller/
         |-- recipe.php
     |-- model/
         |-- recipe.php
