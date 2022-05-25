@@ -91,10 +91,8 @@ function edit()
     // Si on a des données dans le $_POST,
     // c'est qu'on a essayé de valider un formulaire
     if (count($_POST)) {
-        // vérifications, affectations
-        $recipe['nom'] = $_POST['nom'];
         // sauvegarde, dans une fonction du Model
-        save($recipe);
+        save($_POST);
     }
     
     // On affiche le formulaire
@@ -194,10 +192,99 @@ function edit()
 ```
 
 ### Vérifier les données du formulaire
-Model
+Si le contrôle de "Est-ce que tel utilisateur a le droit de faire ceci" qui nécessite
+donc plusieurs objets et relève du Controller, la vérification des données elle-même
+doit être fait dans le **Model** car, on le rappelle, c'est le garant de la gestion des données : 
+en plus de communiquer avec la base de données, le Model doit se charger de vérifier les données
+qu'il fait rentrer dans le système, comme vérifier qu'une adresse email est bien au bon format.
+
+Il faudrait donc modifier notre fonction `save` de la manière suivante : 
+
+```php
+function save(array $recipe): bool
+{
+    // Avant toute autre action, on doit vérifier les données qu'on va manipuler
+    // On vérifie que le tableau a bien une entrée 'nom' et que le contenu n'est pas vide
+    // Le test null == $recipe['nom'] avec seulement 2 == considède comme null les valeurs suivantes :
+    // "", 0, "0", false, array(), null 
+    if (!array_key_exists('nom', $recipe) || null == $recipe['nom']) {
+        throw new \Exception('Vous devez renseigner un nom de recette');
+    }
+    if (!array_key_exists('description', $recipe) || null == $recipe['description']) {
+        throw new \Exception('Vous devez renseigner une description de recette');
+    }
+    
+    // Une fois que toutes les valeurs sont bonnes, on peut faire rentrer les données
+    // dans notre système
+
+    // Suite de la fonction
+    ...
+}
+```
 
 ### Transmettre à la vue des éventuels messages d'erreur ou de confirmation
-try catch, @throw
+Après une action qui nécessite un traitement, il se peut qu'on ait besoin de faire
+remonter des informations à l'utilisateur. On ne va pas pour autant créer une toute nouvelle
+vue juste pour afficher un message. 
+
+Dans notre exemple, on va considérer le cas où on vient de poster la modification de la recette.
+#### On a posté une recette sans titre
+Dans notre flux d'exécution, c'est le **Model** qui devrait détecter cette erreur car il est
+le garant des données mises dans le système. On a vu plus haut qu'en cas d'oubli de titre, 
+une Exception est levée, avec un message d'erreur, il faut donc l'attraper dans le Controller.
+
+```php
+function edit()
+{
+    // Vérifications des droits vu plus haut
+    
+    // On créer notre variable pour la vue plus haut
+    $view = [];
+    
+    if (count($_POST)) {
+        $recipe = $_POST;
+    
+        // Le Model vérifie désormais les données, et lève une Exception en cas
+        // d'erreur. On veut donc récupérer cette Exception pour la transformer en message
+        // pour l'envoyer à la vue
+        try {
+            // sauvegarde, dans une fonction du Model
+            save($recipe);
+        } catch (\Exception $e) {
+            // On ajoute le message dans un tableau dans le cas où plusieurs erreurs
+            // pourraient arriver dans notre script dans le futur
+            $view['errors'][] = $e->getMessage();   // contient ''Vous devez renseigner un nom de recette'
+        }
+    }
+    
+    // On complète désormais notre variable pour la vue en repassant la recette
+    // On a changé plus haut $recipe avec les valeurs du $_POST pour que les données
+    // ne soient pas perdues et soient réutilisées
+    $view['recipe'] = $recipe;
+    
+    require('view/recipe/edit.php');
+}
+```
+
+Enfin, comme on a ajouté un tableau des erreurs, il faut désormais l'afficher dans la **Vue**. 
+On fabrique une simple liste, à styliser avec un fond rouge par exemple.
+
+```php
+<?php if (count($view['errors']) { ?>
+    <ul class='errors-message'>
+        <?php foreach($view['errors'] as $error) { ?>
+            <li><?php echo $error; ?></li>
+        <?php } ?>
+    </ul>
+<?php } ?>
+```
+```html
+<form action="/index.php?controller=recipe&action=edit&id=<?php echo $recipe['id']; ?>" method="post">
+    ...
+</form>
+```
+
+
 
 ### Afficher les éventuels messages
 Vue
