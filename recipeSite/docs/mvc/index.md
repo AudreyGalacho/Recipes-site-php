@@ -172,6 +172,8 @@ de se charger de cette fonction. Si on veut mettre en place cette mécanique, il
 
 Il faudrait donc modifier la fonction avec la logique suivante : 
 ```php
+// controller/recipe.php
+
 function edit()
 {
     // On récupère l'enregistrement, c'est le Model qui fait ça
@@ -201,6 +203,8 @@ qu'il fait rentrer dans le système, comme vérifier qu'une adresse email est bi
 Il faudrait donc modifier notre fonction `save` de la manière suivante : 
 
 ```php
+// model/recipe.php
+
 function save(array $recipe): bool
 {
     // Avant toute autre action, on doit vérifier les données qu'on va manipuler
@@ -234,6 +238,8 @@ le garant des données mises dans le système. On a vu plus haut qu'en cas d'oub
 une Exception est levée, avec un message d'erreur, il faut donc l'attraper dans le Controller.
 
 ```php
+// controller/recipe.php
+
 function edit()
 {
     // Vérifications des droits vu plus haut
@@ -266,10 +272,77 @@ function edit()
 }
 ```
 
-Enfin, comme on a ajouté un tableau des erreurs, il faut désormais l'afficher dans la **Vue**. 
-On fabrique une simple liste, à styliser avec un fond rouge par exemple.
+#### On a posté une recette sans erreur
+Cette fois, on doit adapter notre code pour qu'on puisse savoir si l'enregistrement s'est bien passé, 
+et le signaler à notre utilisateur.
 
+On doit d'abord modifier notre fonction `save()` dans le **Model** pour renvoyer la confirmation
+que tout s'est bien passé, ou non.
 ```php
+// model/recipe.php
+
+function save(array $recipe): bool
+{
+    // Début de la fonction, tout est bon
+    
+    // On exécute donc la requête de création ou mise à jour
+    $statement = $db->prepare($insertOrUpdateQuery, $recipe);
+    
+    // La fonction ->execute() retourne true si la requête s'est bien passée
+    // ou false si une erreur est survenue
+    $result = $statement->execute();
+    
+    // On pourrait juste renvoyer la valeur, mais ici on peut décider de gérer l'erreur
+    // directement dans cette fonction, car c'est lié à la base de données, donc ça peut
+    // rester dans le Model
+    if (false === $result) {
+        $message = 'Erreur lors de l\'enregistrement en base de données : ';
+        $message.= '['.$statement->errorCode().'] '.$statement->errorInfo()[2];
+        throw new \Exception($message);
+    }
+    
+    // Si tout s'est bien passé
+    return true;
+}
+```
+Et enfin, on doit maintenant changer notre **Controller** pour tenir compte de ce comportement.
+```php
+// controller/recipe.php
+
+function edit()
+{
+    // Début de la fonction
+    
+        try {
+            // sauvegarde, dans une fonction du Model
+            save($recipe);
+            
+            // On n'a pas vraiment besoin de récupérer la valeur de retour, car, en cas d'échec
+            // la fonction a levé une Exception, donc si on se retrouve ici, c'est que true 
+            // a été retourné
+            $view['success'][] = 'La recette '.$recipe['nom'].' a bien été enregistrée';
+        } catch (\Exception $e) {
+            // On ajoute le message dans un tableau dans le cas où plusieurs erreurs
+            // pourraient arriver dans notre script dans le futur
+            $view['errors'][] = $e->getMessage();   // contient ''Vous devez renseigner un nom de recette'
+        }
+    }
+```
+Et voilà ! On a rajouté un système pour faire remonter des messages dans le **Controller**, que celui-ci
+va pouvoir passer à la **Vue**.
+
+### Afficher les éventuels messages
+On vient de le voir, on a rajouté dans notre **Controller** tout un tas de messages qui permettent d'indiquer
+à l'utilisateur si les actions qu'il a faites sont justes ou non. Ça lui permet de savoir s'il a correctement
+rempli le formulaire et si les informations se sont correctement enregistrée ou non, et si non, pourquoi.
+
+Mais ces messages doivent être affichés pour être visible, et pour ça, c'est à la **Vue** de s'en charger,
+puisqu'il s'agit d'affichage.
+
+On pourrait donc avoir un code de ce genre-là :
+```php
+// view/recipe.php
+
 <?php if (count($view['errors']) { ?>
     <ul class='errors-message'>
         <?php foreach($view['errors'] as $error) { ?>
@@ -277,15 +350,21 @@ On fabrique une simple liste, à styliser avec un fond rouge par exemple.
         <?php } ?>
     </ul>
 <?php } ?>
+<?php if (count($view['success']) { ?>
+    <ul class='success-message'>
+        <?php foreach($view['success'] as $success) { ?>
+            <li><?php echo $success; ?></li>
+        <?php } ?>
+    </ul>
+<?php } ?>
 ```
 ```html
+<!-- suite du view/recipe.php -->
 <form action="/index.php?controller=recipe&action=edit&id=<?php echo $recipe['id']; ?>" method="post">
     ...
 </form>
 ```
 
-
-
-### Afficher les éventuels messages
-Vue
+L'affichage des messages étant quelque chose qu'on voudrait de systématique, il est tout à fait possible de 
+déplacer ce bout de code dans un fichier plus standard et de l'appeler dans chaque **Vue**.
 
