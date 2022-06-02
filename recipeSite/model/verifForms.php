@@ -37,9 +37,6 @@ function checkTwinRecipe($title, $abstract)
     $recipeGetByTitle = getRecipeByTitle($title);
     $recipeGetByAbstract = getRecipeByAbstract($abstract);
     
-    // if (($recipeGetByAbstract == null) || ($recipeGetByTitle == null)){
-
-    // }
     if ($recipeGetByTitle !== false) {
         if ($recipeGetByTitle[1] == $title) {
             errMessageSameTitle();
@@ -53,12 +50,7 @@ function checkTwinRecipe($title, $abstract)
         return true;
     }
 }
-    
-    // if ((getRecipeByTitle($title) !== $title) &&
-    //     (getRecipeByAbstract($abstract) !== $abstract)
-    // ) {
-    //     return false;
-    // }
+
 }
 /** Verify double recipes in Table recipes
  * @param string 

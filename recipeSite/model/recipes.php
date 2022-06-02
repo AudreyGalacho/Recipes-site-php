@@ -1,10 +1,38 @@
 <?php
+
+/**************************************************  CRUD DATABASE *********************************************/  
+
+/** Add recipe to data base
+ * @param array
+ * @return array|false
+ */
+function createRecipe($recipe)
+{
+    global $mysqlClient;
+    $title = $recipe[0];
+    $abstract = $recipe[1];
+    $author = $recipe[2];
+    $sqlQuery = 'INSERT INTO `recipes`(`title`, `abstract`, `author`,`is_enabled`) VALUES (:title, :abstract, :author, :is_enabled)';
+    try {
+        $insertRecipe = $mysqlClient->prepare($sqlQuery);
+        $insertRecipe->execute([
+            'title' => $title,
+            'abstract' => $abstract,
+            'author' => $author,
+            'is_enabled' => 1,
+        ]);
+    } catch (Exception $e) {
+        echo 'Exception : ', $e->getMessage();
+        return false;
+    }
+}
+
 /** Get one recipe from is id
  * @param string 
  * @return array|false
  */
 function getRecipeById($idRecipe)
-{ // Request recipe By ID  ----------------------------------------------------------------------
+{ // Request recipe By ID FROM RECIPE AND USER JOIN----------------------------------------------------------------------
     global $mysqlClient;
     $searchRecipe = 'SELECT recipes.recipe_id, recipes.title, recipes.abstract, recipes.author, users.full_name, users.age 
                         FROM recipes INNER JOIN users ON users.email = recipes.author 
@@ -19,25 +47,6 @@ function getRecipeById($idRecipe)
     } catch (Exception $e) {
         echo 'Exception : ', $e->getMessage();
         return false;
-    }
-}
-
-/** Delete recipe from ID 
- * @param string 
- * @return string|false
- */
-function removeRecipesById($id)
-{
-    global $mysqlClient;
-    $deleteRecipe = 'DELETE FROM recipes WHERE recipe_id = :id';
-    try {
-        $suppRecipe = $mysqlClient->prepare($deleteRecipe);
-        $suppRecipe->execute([
-            'id' => $id,
-        ]);
-        // echo 'RECIPE DELETED ';
-    } catch (Exception $e) {
-        echo 'Exception : ', $e->getMessage();
     }
 }
 
@@ -65,27 +74,32 @@ function updateRecipesById($title, $abstract, $id)
     }
 }
 
-/** Add recipe to data base
- * @param string
- * @return array|false
+/** Delete recipe from ID 
+ * @param string 
+ * @return string|false
  */
-function addRecipe($title, $abstract, $author)
+function removeRecipesById($id)
 {
     global $mysqlClient;
-    $sqlQuery = 'INSERT INTO `recipes`(`title`, `abstract`, `author`,`is_enabled`) VALUES (:title, :abstract, :author, :is_enabled)';
+    $deleteRecipe = 'DELETE FROM recipes WHERE recipe_id = :id';
     try {
-        $insertRecipe = $mysqlClient->prepare($sqlQuery);
-        $insertRecipe->execute([
-            'title' => $title,
-            'abstract' => $abstract,
-            'author' => $author,
-            'is_enabled' => 1,
+        $suppRecipe = $mysqlClient->prepare($deleteRecipe);
+        $suppRecipe->execute([
+            'id' => $id,
         ]);
+        // echo 'RECIPE DELETED ';
     } catch (Exception $e) {
         echo 'Exception : ', $e->getMessage();
-        return false;
     }
 }
+
+
+/****************************************************  FUNCTIONS  *****************************************************************/
+
+            
+
+
+
 
 /** Get recipe by Title
  * @param string

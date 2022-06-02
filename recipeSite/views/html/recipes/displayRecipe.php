@@ -12,6 +12,19 @@ function displayRecipe(array $recipe): string // Fonction d'affichage d'une rece
     return $recipe_content;
 }
 
+/** Display author in full name instead of mail adress
+ * @param array
+ * @return string
+ */
+
+function displayAuthor($recipe) //Affichage de l'auteur en nom complet
+{        
+    $authorRecipeFullName = $recipe['full_name'] . ' (' . $recipe['age'] . ' ans)';
+    $recipeAuthor = '<i><a class="text-decoration-none text-reset text-end" href="/recipeSite/?recipes/list/author/'.$recipe['author'].'">' . $authorRecipeFullName . '</a></i>';
+    return $recipeAuthor;
+}
+
+
 /** Display one recipe detail and for recipes belong user logged buttons modif/errase and commentry form  
  * @param array 
  * @return string
@@ -19,7 +32,6 @@ function displayRecipe(array $recipe): string // Fonction d'affichage d'une rece
 function displayFullRecipe(array $recipe) // Fonction d'affichage d'une recette avec commentaires
 {
     // echo '  Function display full recipe!!!   ';
-
     $idRecipe = $recipe['recipe_id'];
     // var_dump($recipe);
 
@@ -49,3 +61,49 @@ function displayFullRecipe(array $recipe) // Fonction d'affichage d'une recette 
     exit;
     return;
 }
+
+/** Display list recipes (hide version) and for recipes belong user logged buttons modif/errase
+ * @param array|array
+ * @return string
+ */
+function displayListRecipes(array $recipes)
+{
+    echo '<div class="container-fluid">';
+
+    foreach ($recipes as $recipe) {
+        $dspRecipe = displayRecipe($recipe);
+        $dspEndRecipeAuthor = displayAuthor($recipe);
+?>
+        <article class="list">
+            <?php echo $dspRecipe . $dspEndRecipeAuthor;      
+            echo buttonOwnerUptateRemove($recipe); ?>
+        </article>
+    <?php
+    }
+    echo '</div>';
+}
+
+/** Display user Logged recipes detail and buttons modif/errase
+ * @param 
+ * @return string
+ */
+function displayMyListRescipes($recipes)
+{
+
+    echo 'ZOZIOOOOOOOOO';
+    echo '<div class="container-fluid">';
+    foreach ($recipes as $recipe) {
+        $dspRecipe = displayRecipe($recipe);
+    ?>
+        <article class="list">
+            <?php
+            echo $dspRecipe . 
+                '<div class="fullButtonRecipe">'. buttonOwnerUptateRemove($recipe) . '</div>';
+            ?>
+        </article>
+<?php
+    }
+    echo '</div>';
+}
+
+

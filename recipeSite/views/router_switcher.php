@@ -1,30 +1,19 @@
 <?php
 
 /** Route action
- * @param 
- * @return 
+ * @param //url
+ * @return //switch to controler apropriate
  */
 function router()
 {
-    // echo ' ROOOUUUTIIINNNG ' ;
-    findRoute();
-}
-/** Url decomposition to router
- * @param string
- * @return string|string
- */
-function findRoute()
-{
-    // echo ' FIND ROAD ';
+    //$url = 'http://localhost/recipeSite/?recipes/list/one/13'; TEST
+    $url = $_SERVER['REQUEST_URI'];    
 
-    $url = $_SERVER['REQUEST_URI'];
-    // $url = 'http://localhost/recipeSite/?recipes/list/one/13';
-
+    //Get url and explode arguments
     $extention = (parse_url($url, PHP_URL_QUERY));
     $arguments = explode('/', $extention);
-    // $argument = explode('/', $arguments);
-    // var_dump(count($arguments));
 
+    // get 4 arguments to get all needed
     if (count($arguments) == "4") {
         // echo(' 4 arguments get ');
         $route = $arguments;
@@ -44,7 +33,9 @@ function findRoute()
         $route = ['recipes', 'list', 'all', ''];
         switcher($route);
     }
+
 }
+
 /** Switch action Url
  * @param array
  * @return 
@@ -56,40 +47,23 @@ function switcher($route)
     $id = $route[2];
     $idPlus = $route[3];
 
-    // echo ' SWITCHER ';
     switch ($destination) {
         case 'recipes':
+            include_once('model/verifForms.php');
             switch ($action) {
                 case 'list':
                     switch ($id) {
                         case 'all':
-                            messageLog();
                             displayAllRecipes();
                             break;
                         case 'my_recipes':
-                            if (!isset($_SESSION['userMail'])) {
-                                messageLog();
-                                errAcces();
-                                echo backButton();
-                                return;
-                            }
-                            $myRecipies = recipeByAuthorJoinUser($_SESSION['userMail']);
-                            messageLog();
-                            echo backButton();
-                            displayMyListRescipes($myRecipies);
+                            displayUserListRescipes();
                             break;
                         case 'author':
-                            messageLog();
-                            $recipeByAuthor = recipeByAuthorJoinUser($idPlus);
-                            displayListRecipes($recipeByAuthor);
+                            displayAuthorRecipies($idPlus);
                             break;
                         case 'one':
-                            messageLog();
-                            // display one recipe by title (full text) and commentry form
-                            $tableJoin = recipeJoinUser(); //jointure table
-                            $recipeJoinGet = getRecipeJoin($idPlus, $tableJoin); //fetch id match
-                            displayFullRecipe($recipeJoinGet);
-                            // include('html/users/commentryForm.php');
+                            displayOneRecipe($idPlus);
                             break;
                         default:
                             echo 'recettes défault';
@@ -97,23 +71,15 @@ function switcher($route)
                     }
                     break;
                 case 'form':
-                    include_once('controller/crudFunctionsRecipe.php');
-                    include_once('controller/verifForms.php');
                     switch ($id) {
                         case 'update':
-                            verifyUpdateRecipe($idPlus);
+                            doUpdateRecipe($idPlus);
                             break;
-                        case 'add':
-                            if (!isset($_SESSION['userMail'])) {
-                                messageLog();
-                                errAcces();
-                                echo backButton();
-                                return;
-                            }
-                            verifyAddRecipeAndForm();
+                        case 'add':                        
+                            doAddRecipe();
                             break;
                         case 'remove':
-                            verifyDeleteRecipe($idPlus);
+                            doDeleteRecipeRecap($idPlus);
                             break;
                         default:
                             break;
@@ -128,10 +94,10 @@ function switcher($route)
                 case 'log':
                     switch ($id) {
                         case 'in':
-                            isUserLogged();
+                            logUserWindow();
                             break;
                         case 'out':
-                            userLogOut();
+                            doUserLogOut();
                             break;
                         default:
                             # code...
@@ -155,9 +121,9 @@ function switcher($route)
                 case 'contact':
                     switch ($id) {
                         case 'form':
-                            messageLog();
+                            logUserWindow();
                             // echo 'form contact switcher';
-                            include_once('html/formulaires/contactForm.php');
+                            include_once('views/html/recipes/formulaires/contactForm.php');
                             break;
                         default:
                             echo 'contact défault';
