@@ -83,27 +83,5 @@ function displayListRecipes(array $recipes)
     echo '</div>';
 }
 
-/** Display user Logged recipes detail and buttons modif/errase
- * @param 
- * @return string
- */
-function displayMyListRescipes($recipes)
-{
-
-    echo 'ZOZIOOOOOOOOO';
-    echo '<div class="container-fluid">';
-    foreach ($recipes as $recipe) {
-        $dspRecipe = displayRecipe($recipe);
-    ?>
-        <article class="list">
-            <?php
-            echo $dspRecipe . 
-                '<div class="fullButtonRecipe">'. buttonOwnerUptateRemove($recipe) . '</div>';
-            ?>
-        </article>
-<?php
-    }
-    echo '</div>';
-}
 
 

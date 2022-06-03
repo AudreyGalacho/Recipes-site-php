@@ -8,14 +8,13 @@ function logUserWindow()
 
     if (!isset($_POST['email']) && (!isset($_SESSION['userMail'])))
     {
-        $windowLog = include('views/html/users/userLogIn.php');
-        echo $windowLog;  
+        include('views/html/users/userLogIn.php');
         return;
     }
     if (isset($_POST['email']))
     {
         $isUserKnown = getUserFormDatabase($_POST['email']);
-        var_dump($isUserKnown);
+        // var_dump($isUserKnown);
         if ($isUserKnown == false) 
         {// No user Match on database
             messageLogErr();
@@ -35,7 +34,7 @@ function logUserWindow()
         echo $messageWelcome. logOutButton() . '</aside>';
         return;
     }
-        
+        // var_dump($_SESSION);
 }
 
 

@@ -15,8 +15,10 @@
     require ('views/html/recipes/displayRecipe.php');
     require('views/html/recipes/displayButtons.php');
     require('controller/recipes.php');
-    
 
+//Affichage autre
+    
+    include_once('views/html/windows/messages.php');
 
 
 

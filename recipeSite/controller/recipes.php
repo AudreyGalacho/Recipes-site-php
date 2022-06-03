@@ -38,17 +38,17 @@ function doEditRecipe($id)
  */
 function doAddRecipe()
 {
-
+    logUserWindow();
     //user verification
     if (!isset ($_SESSION['userMail'])) {
         // 403 error HTTP for access rights exceptions
         /** @see https://developer.mozilla.org/fr/docs/Web/HTTP/Status */
-        throw new \Exception('Vous n\'avez pas le droit d\'accéder à cette ressource, vous devez être connecté!', 403);
-        backButton();
+        errAccesUnauthorized();
+        echo backButton();
         return;
 
     } else { //if user logged
-        logUserWindow();
+        
         if (count($_POST)> 0){ //THERE IS POST DATA
             // var_dump($_POST);
 
@@ -81,14 +81,28 @@ function doAddRecipe()
 function doUpdateRecipe($id)
 {
 
+    logUserWindow();
     $recipe = getRecipeById($id);
+    //user verification
+    if (!isset ($_SESSION['userMail'])) {
+        // 403 error HTTP for access rights exceptions
+        /** @see https://developer.mozilla.org/fr/docs/Web/HTTP/Status */
+        errAccesUnauthorized();
+        echo backButton();
+        return;
+    }
+    if ($_SESSION['userMail'] !== $recipe['author']) {
+        errAccesForbidden($recipe['author']);
+        echo backButton();
+        return;
+    }
+    
 
     $authorID = $recipe['author'];
-    $abstract = $recipe['abstract'];
+    $abstract = $recipe['abstract'];   // VERIF IERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
     $title = $recipe['title'];
 
     if (!isset($_POST['abstract']) || !isset($_POST['title'])) {
-        logUserWindow();
         include('views/html/recipes/formulaires/modifRecipeForm.php');
         backButton();
         return;
