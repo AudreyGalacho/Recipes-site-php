@@ -1,4 +1,5 @@
 <div class="container">
+    
     <h2><u>Suppression de " <?php echo $title; ?>" :</u></h2>
     <form action="" method="POST">
         <fieldset>
@@ -8,7 +9,7 @@
         </br>
         <fieldset>
             <legend>La recette</legend>
-            <input type="hidden" class="form-controller" id="id" name="id" <?php echo 'value="' . $id . '"'; ?>>
+            <input type="hidden" class="form-control" id="id" name="id" <?php echo 'value="' . $id . '"'; ?>>
             <h5><?php echo $title; ?></h5>
             </br>
             <p style="white-space:pre-wrap" class= "full-text card-text text-justify" readonly><?php echo $abstract; ?></p>
