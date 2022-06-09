@@ -2,7 +2,7 @@
 
     <h1>Contactez nous</h1>
     <form action="" method="POST">
-        <label for="email">Adresse mail</label>
+        <label for="email" class="form-label">Adresse mail</label>
         <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="votre@mail.com">
         <small id="emailHelp" class="form-text text-muted">Nous ne revendrons pas votre email.</small>
 

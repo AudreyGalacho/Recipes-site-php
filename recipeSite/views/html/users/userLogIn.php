@@ -3,12 +3,13 @@
         Se connecter :
     </h5>
     <form class="log" method="POST" action="">
-        <label for="email">Email : </label>
-        <input type="email" placeholder="your@email.com" name="email" required="required">
+        <label class="form-label" for="email" >Email : </label>
+        <input type="email" class="form-control" placeholder="your@email.com" name="email" required="required">
 
-        <label for="password">Password : </label>
-        <input type="password" placeholder="*********" name="password" required="required">
+        <label class="form-label" for="password">Password : </label>
+        <input type="password" class="form-control" placeholder="*********" name="password" required="required">
 
-        <input type="submit" value="Connexion">
+        <button type="submit" class="btn btn-primary">Connexion</button> 
+
     </form>
 </aside>
