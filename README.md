@@ -1,6 +1,8 @@
 # first-repository
 
-/!\ pas de fichiers git ignorer!!
 
-*edit maintenant oui*
+This is the common thread of the php course of:
+OpenClassroom php MySql
+Creation of a recipe sharing website with login system
 
+I am changing the organization to match a more relevant MCV system.
